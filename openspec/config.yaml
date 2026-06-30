@@ -1,0 +1,16 @@
+# Synapse-native OpenSpec config (not Fission-AI npm CLI)
+schema: synapse-sdd
+profile: core
+
+project:
+  name: synapse
+  description: Local AI engine for IDE agents
+
+rules:
+  proposal:
+    - State problem before solution
+    - Link docs/CHECKLIST.md for release-related work
+  specs:
+    - Use Given/When/Then when adding requirements
+  design:
+    - Reference pkg/ and internal/ paths when touching engine code

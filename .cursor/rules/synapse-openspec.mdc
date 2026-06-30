@@ -1,0 +1,48 @@
+---
+description: Synapse-native OpenSpec — on-demand via /opsx-* slash commands only
+globs:
+  - openspec/**
+  - docs/CHECKLIST*.md
+alwaysApply: false
+---
+
+# OpenSpec (Synapse-native)
+
+Do **not** use the npm `@fission-ai/openspec` CLI. Use MCP tools + `syn openspec`.
+
+## Slash commands (on-demand only)
+
+Install with `syn openspec init` or say yes during `syn init`. Invoke only when the user types `/`:
+
+| Slash (Cursor) | Purpose |
+|----------------|---------|
+| `/opsx-explore` | Investigate codebase — read-only |
+| `/opsx-new` | Scaffold change folder only (step-by-step planning) |
+| `/opsx-continue` | Next planning artifact (expanded flow) |
+| `/opsx-ff` | Fast-forward all planning artifacts |
+| `/opsx-propose` | Create `openspec/changes/<id>/` + artifacts |
+| `/opsx-apply` | Implement tasks (TDD) + workflow |
+| `/opsx-sync` | Merge delta specs → `openspec/specs/` |
+| `/opsx-verify` | Quality gate before archive |
+| `/opsx-archive` | Archive change + sync specs |
+
+Definitions: `.cursor/commands/opsx-*.md`
+
+## When to suggest OpenSpec (no slash)
+
+- New features, large refactors, architecture changes, release gates
+- **Not** required for typos or 1–2 file fixes
+
+## MCP reference flow
+
+1. `openspec_router` → flow (`sdd`, `bugfix`, …)
+2. `openspec_propose`
+3. `openspec_apply` + `start_workflow: true`
+4. Implement + `workflow_next`
+5. `openspec_verify`
+6. `openspec_sync` / `openspec_archive`
+7. `syn migrate` — re-index brain
+
+CLI: `syn openspec init | verify | sync`
+
+Checklist: [docs/CHECKLIST-OPENSPEC-CODEGRAPH.md](docs/CHECKLIST-OPENSPEC-CODEGRAPH.md)

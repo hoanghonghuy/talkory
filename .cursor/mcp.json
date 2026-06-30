@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "synapse": {
+      "command": "${workspaceFolder}/.synapse/.run/mcp-gateway.exe",
+      "args": [
+        "--transport",
+        "stdio",
+        "--workspace",
+        "${workspaceFolder}"
+      ],
+      "env": {
+        "SYNAPSE_ENGINE__SURREAL_URL": "ws://127.0.0.1:47265/rpc",
+        "SYNAPSE_ENGINE__SURREAL_NS": "synapse",
+        "SYNAPSE_ENGINE__SURREAL_USER": "root",
+        "SYNAPSE_ENGINE__SURREAL_PASS": "root",
+        "SYNAPSE_ENGINE__BROKER_URL": "127.0.0.1:47344",
+        "SYNAPSE_ENGINE__DAEMON_HTTP_PORT": "47345",
+        "SYNAPSE_ENGINE__MCP_HTTP_PORT": "47275"
+      }
+    }
+  }
+}
