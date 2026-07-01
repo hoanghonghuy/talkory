@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Lộ trình Nhật (S04)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #ffffff;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-surface-soft: #fafaf9;
+      --color-hairline: #e5e3df;
+      --color-ink: #1a1a1a;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-lang-zh: #dcecfa;
+      --color-lang-zh-accent: #2a9d99;
+      --color-card-mint: #d9f3e1;
+      --color-card-yellow: #fef7d6;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --sidebar-w: 240px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* —— AppShell —— */
+    .shell { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--color-surface);
+      border-right: 1px solid var(--color-hairline);
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 20px 28px;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      font-weight: 700;
+      font-size: 18px;
+      display: grid;
+      place-items: center;
+    }
+
+    .brand h1 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-primary);
+      line-height: 1.2;
+    }
+
+    .brand p {
+      font-size: 12px;
+      color: var(--color-slate);
+      margin-top: 2px;
+    }
+
+    .nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 8px; }
+
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--color-slate);
+      transition: background 0.15s;
+    }
+
+    .nav a:hover { background: var(--color-canvas); }
+
+    .nav a.active {
+      background: rgba(86, 69, 212, 0.08);
+      color: var(--color-primary);
+      font-weight: 600;
+      box-shadow: inset 3px 0 0 var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .nav svg { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.85; }
+
+    .sidebar-footer {
+      padding: 8px 8px 0;
+      border-top: 1px solid var(--color-hairline);
+      margin-top: 8px;
+      padding-top: 16px;
+    }
+
+    .main-wrap {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--color-slate);
+      display: grid;
+      place-items: center;
+    }
+
+    .icon-btn:hover { background: var(--color-surface); }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+      font-size: 13px;
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-hairline);
+    }
+
+    main {
+      flex: 1;
+      padding: 32px;
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* —— Page header —— */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .page-header h2 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      color: var(--color-charcoal);
+      margin-bottom: 6px;
+    }
+
+    .page-header .subtitle {
+      font-size: 15px;
+      color: var(--color-slate);
+      line-height: 1.5;
+    }
+
+    .mascot-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl);
+      padding: 8px 16px 8px 8px;
+      box-shadow: var(--shadow-card);
+      flex-shrink: 0;
+    }
+
+    .mascot-chip img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .mascot-chip strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-lang-ja-accent);
+    }
+
+    .mascot-chip span {
+      font-size: 12px;
+      color: var(--color-slate);
+    }
+
+    /* —— Lang tabs —— */
+    .lang-tabs {
+      display: inline-flex;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+
+    .lang-tabs button {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: var(--color-slate);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+
+    .lang-tabs button.active-ja {
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+      font-weight: 600;
+      box-shadow: var(--shadow-card);
+    }
+
+    .lang-tabs button:not(.active-ja):hover {
+      background: var(--color-canvas);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+    }
+
+    .dot-ja { background: var(--color-lang-ja-accent); }
+    .dot-zh { background: var(--color-lang-zh-accent); }
+
+    /* —— Level accordion —— */
+    .levels { display: flex; flex-direction: column; gap: 12px; }
+
+    .level-card {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .level-card.expanded { box-shadow: var(--shadow-elevated); }
+
+    .level-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .level-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .level-badge.mint {
+      background: var(--color-card-mint);
+      color: var(--color-success);
+    }
+
+    .level-badge.lavender {
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+    }
+
+    .level-badge.locked {
+      opacity: 0.55;
+    }
+
+    .level-info { flex: 1; min-width: 0; }
+
+    .level-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-charcoal);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .level-info p {
+      font-size: 13px;
+      color: var(--color-slate);
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .tag-free {
+      background: var(--color-success-soft);
+      color: var(--color-success);
+    }
+
+    .tag-next {
+      background: var(--color-card-yellow);
+      color: #92680a;
+    }
+
+    .tag-lock {
+      background: var(--color-surface);
+      color: var(--color-muted);
+      border: 1px solid var(--color-hairline);
+    }
+
+    .level-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .progress-ring {
+      width: 44px;
+      height: 44px;
+      position: relative;
+    }
+
+    .progress-ring svg { transform: rotate(-90deg); }
+
+    .progress-ring span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-success);
+    }
+
+    .chevron {
+      width: 20px;
+      height: 20px;
+      color: var(--color-muted);
+      transition: transform 0.2s;
+    }
+
+    .level-card.expanded .chevron { transform: rotate(180deg); }
+
+    /* —— Unit list —— */
+    .unit-list {
+      border-top: 1px solid var(--color-hairline);
+      background: var(--color-surface-soft);
+      padding: 8px 12px 12px;
+    }
+
+    .unit-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+      padding: 8px 8px 6px;
+    }
+
+    .lesson-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      border: 1px solid transparent;
+      margin-bottom: 4px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .lesson-row:hover {
+      border-color: var(--color-hairline);
+      box-shadow: var(--shadow-card);
+    }
+
+    .lesson-row.highlight {
+      border-color: rgba(86, 69, 212, 0.35);
+      background: rgba(86, 69, 212, 0.04);
+    }
+
+    .lesson-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .lesson-body { flex: 1; min-width: 0; }
+
+    .lesson-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      margin-bottom: 2px;
+    }
+
+    .lesson-body small {
+      font-size: 12px;
+      color: var(--color-slate);
+    }
+
+    .lesson-status {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mini-bar {
+      width: 64px;
+      height: 4px;
+      background: var(--color-hairline);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .mini-bar i {
+      display: block;
+      height: 100%;
+      background: var(--color-success-bright);
+      border-radius: 999px;
+    }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--color-success-soft);
+      color: var(--color-success);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+
+    .level-card.collapsed .unit-list { display: none; }
+
+    .level-card.collapsed .level-header { opacity: 0.72; }
+
+    .lock-overlay-hint {
+      font-size: 12px;
+      color: var(--color-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* —— Footer note —— */
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">T</div>
+        <div>
+          <h1>Talkory</h1>
+          <p>Học Nhật &amp; Trung</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+          Trang chủ
+        </a>
+        <a href="#" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Học
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Ôn tập
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          IT
+        </a>
+        <a href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          Cài đặt
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="#" class="nav" style="padding:0">
+          <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;font-size:14px;color:var(--color-slate);text-decoration:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            Hồ sơ
+          </span>
+        </a>
+      </div>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="lang-tabs" role="tablist">
+          <button type="button" class="active-ja" aria-selected="true">
+            <span class="dot dot-ja"></span>
+            Tiếng Nhật
+          </button>
+          <button type="button" aria-selected="false">
+            <span class="dot dot-zh"></span>
+            Tiếng Trung
+          </button>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="Thông báo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </button>
+          <div class="avatar" title="Minh">M</div>
+        </div>
+      </header>
+
+      <main>
+        <div class="page-header">
+          <div>
+            <h2>Lộ trình JLPT</h2>
+            <p class="subtitle">N5 → N1 · Chọn level và bài học để tiếp tục</p>
+          </div>
+          <div class="mascot-chip">
+            <img src="../assets/mascots/sakko-idle-transparent.png" alt="Sakko" />
+            <div>
+              <strong>Sakko</strong>
+              <span>Đồng hành cùng bạn học Nhật</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="levels">
+          <!-- N5 — expanded, free -->
+          <article class="level-card expanded">
+            <div class="level-header">
+              <div class="level-badge mint">N5</div>
+              <div class="level-info">
+                <h3>
+                  Sơ cấp — N5
+                  <span class="tag tag-free">Miễn phí</span>
+                </h3>
+                <p>12 bài · Hiragana, Katakana, ngữ pháp cơ bản</p>
+              </div>
+              <div class="level-meta">
+                <div class="progress-ring" title="3/12 bài">
+                  <svg width="44" height="44" viewBox="0 0 44 44">
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="#e5e3df" stroke-width="4"/>
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="#00ed64" stroke-width="4"
+                      stroke-dasharray="113" stroke-dashoffset="85" stroke-linecap="round"/>
+                  </svg>
+                  <span>25%</span>
+                </div>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="unit-list">
+              <div class="unit-label">Unit 1 — Chào hỏi &amp; số đếm</div>
+              <div class="lesson-row highlight">
+                <div class="lesson-icon">あ</div>
+                <div class="lesson-body">
+                  <strong>Bài 3 — Hiragana: hàng か</strong>
+                  <small>15 phút · Từ vựng + luyện nghe</small>
+                </div>
+                <div class="lesson-status">
+                  <div class="mini-bar"><i style="width:40%"></i></div>
+                  <span class="tag tag-next">Tiếp theo</span>
+                </div>
+              </div>
+              <div class="lesson-row">
+                <div class="lesson-icon">✓</div>
+                <div class="lesson-body">
+                  <strong>Bài 2 — Hiragana: hàng あ</strong>
+                  <small>12 phút · Đã hoàn thành</small>
+                </div>
+                <div class="lesson-status">
+                  <span class="check">✓</span>
+                </div>
+              </div>
+              <div class="lesson-row">
+                <div class="lesson-icon">👋</div>
+                <div class="lesson-body">
+                  <strong>Bài 1 — Chào hỏi cơ bản</strong>
+                  <small>10 phút · Đã hoàn thành</small>
+                </div>
+                <div class="lesson-status">
+                  <span class="check">✓</span>
+                </div>
+              </div>
+
+              <div class="unit-label" style="margin-top:12px">Unit 2 — Gia đình &amp; đồ vật</div>
+              <div class="lesson-row">
+                <div class="lesson-icon">🔒</div>
+                <div class="lesson-body">
+                  <strong>Bài 4 — Từ vựng gia đình</strong>
+                  <small>Mở sau khi hoàn thành Bài 3</small>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- N4 — collapsed preview -->
+          <article class="level-card collapsed">
+            <div class="level-header">
+              <div class="level-badge lavender locked">N4</div>
+              <div class="level-info">
+                <h3>
+                  Sơ trung cấp — N4
+                  <span class="tag tag-lock">Premium</span>
+                </h3>
+                <p>18 bài · Ngữ pháp trung cấp, kanji thường dùng</p>
+              </div>
+              <div class="level-meta">
+                <span class="lock-overlay-hint">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Khóa
+                </span>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="unit-list"></div>
+          </article>
+
+          <!-- N3 — collapsed -->
+          <article class="level-card collapsed">
+            <div class="level-header">
+              <div class="level-badge lavender locked">N3</div>
+              <div class="level-info">
+                <h3>Trung cấp — N3 <span class="tag tag-lock">Premium</span></h3>
+                <p>24 bài · Đọc hiểu, kanji nâng cao</p>
+              </div>
+              <div class="level-meta">
+                <span class="lock-overlay-hint">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Khóa
+                </span>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+            <div class="unit-list"></div>
+          </article>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="mockup-badge">Mockup S04 · Talkory design system · Không phải Stitch</div>
+</body>
+</html>

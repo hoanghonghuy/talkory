@@ -23,10 +23,10 @@
 | Dictionary/translate | AI tra từ only v1; dịch Google→MS fallback; popover 2 tab — xem `references/read-frog.md` |
 | Soft delete | `deleted_at` trên entity CMS |
 | Logging | slog + request ID từ v1 |
-| Mascot | **Sakko (nữ) + Longmi (nam, rồng)** — PNG `docs/assets/mascots/`; không dùng Stitch |
+| Mascot | **Sakko (nữ) + Longmi (nam, rồng)** — PNG `docs/assets/mascots/` |
 | Themes | Palette × light/dark — user chọn trong Settings |
 | Spec format | `docs/spec/` — **không** OpenSpec product |
-| Stitch mockups | 2/12 màn (S03, S11) — xem `docs/spec/references/stitch.md` |
+| UI mockups | HTML tay trong `docs/mockups/` — checklist `docs/spec/references/mockups.md` (không dùng Stitch) |
 
 ## Chưa chốt (TBD)
 
