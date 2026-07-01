@@ -1,52 +1,55 @@
 # Dictionary & Translation (Future — Always Free)
 
-> Tính năng phase sau. User sẽ clone thêm dự án tham khảo; spec này rào sẵn kiến trúc.
+> Logic: [references/read-frog.md](../references/read-frog.md)
+
+## Quyết định v1 (đã chốt)
+
+| Hạng mục | v1 |
+|---|---|
+| Tra từ | **Chỉ AI** (structured JSON) — chưa có DB từ điển |
+| Dịch | **Google** → fallback **Microsoft** — server proxy, cache |
+| UI | `LexiconPopover` — **2 tab**: Tra từ (mặc định từ ngắn) / Dịch (mặc định câu dài) |
+| Quota | Free — **không** `user_ai_quota`; rate limit lexicon riêng |
+| Local DB | Phase sau — JMdict/CEDICT merge vào lookup |
 
 ## Nguyên tắc
 
-- **Luôn miễn phí** — không quota, không rewarded video
-- Tách bounded context `lexicon` khỏi curriculum và AI tutor
-- Không trộn với `/api/v1/ai/*` (có quota freemium)
+- Tách `internal/lexicon` khỏi AI tutor (`/api/v1/ai/*`)
+- Viết lại prompt/logic từ Read Frog — không copy GPL code
 
-## Tính năng dự kiến
+## API
 
-| Tính năng | Mô tả |
-|---|---|
-| Tra từ điển | Tap kanji/hán tự/từ → popover nghĩa, reading, ví dụ |
-| Tra theo ký tự | Stroke, radical, component |
-| Dịch câu/đoạn | JP/CN ↔ VI/EN — generous rate limit riêng |
+| Method | Path | Engine |
+|---|---|---|
+| POST | `/api/v1/dictionary/lookup` | Gemini/OpenAI structured |
+| POST | `/api/v1/translate` | Google → Microsoft fallback |
+| GET | `/api/v1/dictionary/character/:char` | `stroke_data` (khi có data) |
 
-## Frontend (khi implement)
+## Dictionary output (AI)
 
-- `composables/useDictionary.ts` — `lookup(term)`, debounce
-- `components/lexicon/DictionaryPopover.vue` — dùng trong lesson, reading, writing
-- Route `/dictionary` — tra cứu độc lập (optional)
-- Feature flag `DICTIONARY_ENABLED`
+```json
+{
+  "term": "食べる",
+  "phonetic": "たべる",
+  "partOfSpeech": "verb",
+  "definition": "ăn",
+  "paragraphs": "毎日ご飯を食べる。",
+  "paragraphsTranslation": "Mỗi ngày tôi ăn cơm.",
+  "difficulty": "N5"
+}
+```
+
+## Frontend
+
+- `components/lexicon/LexiconPopover.vue` — 2 tab, lazy API
+- `composables/useDictionary.ts`, `useTranslate.ts`
+- Gắn S04/S05 — tap selection trong reading/lesson blocks
 
 ## Backend
 
-```
-internal/lexicon/
-  provider.go    # DictionaryProvider interface
-  service.go
-  repository.go
-handler/dictionary_handler.go
-handler/translate_handler.go
-```
+`internal/lexicon/` — `DictionaryService` (AI), `TranslateService` (Google/Microsoft chain)
 
-### API (draft)
+## Database v1
 
-| Method | Path | Mô tả |
-|---|---|---|
-| GET | `/api/v1/dictionary/lookup` | `?lang=ja&q=食べる&mode=word` |
-| GET | `/api/v1/dictionary/character/:char` | Chi tiết ký tự + stroke link |
-| POST | `/api/v1/translate` | Body: `{ text, from, to }` |
-
-## Database (phase sau)
-
-Xem stub trong [schema.md](../database/schema.md) — section Lexicon.
-
-## Nguồn data tham khảo
-
-- JMdict, CC-CEDICT (đã import pipeline)
-- Dự án clone sau này — bổ sung provider implementation
+- `lookup_cache` — cache cả dictionary AI và translate (hash input)
+- `dictionary_entries` — phase sau

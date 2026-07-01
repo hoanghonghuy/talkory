@@ -20,7 +20,7 @@
 | AI | 5 lần/ngày free; +5/video; Gemini + OpenAI-compatible |
 | Guest | ~2 bài trước khi bắt đăng ký |
 | Writing | Free |
-| Dictionary/translate | Phase sau, **luôn free** |
+| Dictionary/translate | AI tra từ only v1; dịch Google→MS fallback; popover 2 tab — xem `references/read-frog.md` |
 | Soft delete | `deleted_at` trên entity CMS |
 | Logging | slog + request ID từ v1 |
 | Spec format | `docs/spec/` — **không** OpenSpec product |
@@ -30,7 +30,7 @@
 - IT track freemium (module 1 free hay toàn bộ?)
 - Giá subscription / payment provider
 - Interstitial ads: N bài = 1 quảng cáo
-- Clone dự án tham khảo dictionary — chưa có path
+- Clone dự án tham khảo dictionary — **`temp/read-frog`** → `docs/spec/references/read-frog.md`
 
 ## Trạng thái code
 

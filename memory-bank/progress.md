@@ -17,7 +17,7 @@
 - [ ] Backend scaffold
 - [ ] Frontend scaffold
 - [ ] Pinia/composable spec (sau khi code)
-- [ ] Dự án clone dictionary (user chưa cung cấp)
+- [ ] Lexicon phase — tham khảo `temp/read-frog`, spec `references/read-frog.md`
 
 ## Known issues / TBD
 

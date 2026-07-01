@@ -15,6 +15,7 @@ Tài liệu spec sản phẩm Talkory. **Không** dùng format OpenSpec.
 | [backend/api/](./backend/api/) | Endpoints theo domain (map màn hình) |
 | [database/](./database/) | Schema, soft delete |
 | [features/](./features/) | Tính năng phase sau (dictionary, translation) |
+| [references/](./references/) | Dự án tham khảo (`read-frog`) |
 | [../DESIGN.md](../DESIGN.md) | **Design system FE** — màu, typography, components |
 
 ## Quy ước spec màn hình (`screens/`)
