@@ -7,7 +7,7 @@ Screen: [screens/S11-settings.md](../../screens/S11-settings.md)
 | Method | Path | Auth | Mô tả |
 |---|---|---|---|
 | GET | `/me` | required | Profile |
-| PATCH | `/me` | required | `{ display_name, locale }` |
+| PATCH | `/me` | required | `{ display_name, locale, theme_id?, theme_mode? }` |
 | PATCH | `/me/password` | required | |
 | GET | `/me/subscription` | required | |
 

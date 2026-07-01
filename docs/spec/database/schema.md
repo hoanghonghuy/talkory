@@ -41,6 +41,8 @@ erDiagram
 | password_hash | text | nullable |
 | display_name | text | |
 | locale | text | `vi` \| `en` |
+| theme_id | text | default `talkory-classic` — xem DESIGN.md |
+| theme_mode | text | `light` \| `dark` |
 | role | text | `user` \| `admin` |
 | google_sub | text UNIQUE | nullable |
 | created_at | timestamptz | |

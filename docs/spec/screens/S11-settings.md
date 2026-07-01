@@ -15,6 +15,8 @@
 |---|---|
 | `ProfileForm` | display_name |
 | `LocaleSwitcher` | vi / en |
+| `ThemePicker` | Chọn palette (classic, sakura, jade…) — xem [DESIGN.md § Themes](../../DESIGN.md) |
+| `ThemeModeToggle` | Sáng / Tối |
 | `DailyGoalSlider` | Phút/ngày |
 | `SubscriptionStatus` | Plan + renew date |
 | `LogoutButton` | |
@@ -26,8 +28,9 @@ Standard form states: loading, saving, error, success toast.
 ## Luồng người dùng
 
 1. Đổi locale → reload app content language
-2. Xem subscription / AI history (optional link)
-3. Đăng xuất → `/auth/login`
+2. Chọn theme palette + sáng/tối → apply ngay (`data-theme`, `data-mode`)
+3. Xem subscription / AI history (optional link)
+4. Đăng xuất → `/auth/login`
 
 ## Tương tác & Edge cases
 
