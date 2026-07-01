@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Premium (S10 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-card-yellow: #fef7d6;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-surface);
+      padding: max(12px, env(safe-area-inset-top)) 16px calc(20px + var(--safe-b));
+    }
+    .back { font-size: 14px; color: var(--color-slate); text-decoration: none; display: inline-block; margin-bottom: 16px; }
+    h1 { font-size: 24px; font-weight: 600; margin-bottom: 8px; line-height: 1.25; }
+    .lead { font-size: 14px; color: var(--color-slate); line-height: 1.5; margin-bottom: 20px; }
+    .reward {
+      background: var(--color-card-yellow); border: 1px solid #f0e4b8;
+      border-radius: var(--radius-lg); padding: 14px; margin-bottom: 10px;
+    }
+    .reward h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .reward p { font-size: 12px; color: var(--color-slate); margin-bottom: 10px; line-height: 1.4; }
+    .reward button {
+      font: inherit; font-size: 13px; font-weight: 600; padding: 9px 14px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      background: var(--color-canvas); width: 100%;
+    }
+    .plan {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl); padding: 20px; margin-bottom: 12px;
+    }
+    .plan.featured { border-color: var(--color-primary); }
+    .plan h3 { font-size: 17px; font-weight: 600; }
+    .price { font-size: 28px; font-weight: 700; margin: 8px 0; }
+    .price small { font-size: 14px; font-weight: 400; color: var(--color-slate); }
+    .save { font-size: 13px; color: var(--color-success); font-weight: 600; margin-bottom: 12px; }
+    .plan ul { list-style: none; font-size: 13px; color: var(--color-slate); margin-bottom: 16px; }
+    .plan li { padding: 4px 0 4px 20px; position: relative; }
+    .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--color-success); font-weight: 700; }
+    .btn {
+      width: 100%; font: inherit; font-size: 15px; font-weight: 600;
+      padding: 13px; border: none; border-radius: var(--radius-md); cursor: pointer;
+    }
+    .btn-green { background: var(--color-success-bright); color: #001e2b; }
+    .btn-purple { background: var(--color-primary); color: #fff; }
+    .summary {
+      font-size: 13px; color: var(--color-slate); text-align: center;
+      padding: 12px; background: var(--color-canvas); border-radius: var(--radius-lg);
+      border: 1px solid var(--color-hairline);
+    }
+    .mock { position: fixed; bottom: 8px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <a href="S03-dashboard.html" class="back">← Trang chủ</a>
+  <h1>Mở khóa Talkory</h1>
+  <p class="lead">Học không giới hạn level, AI tutor và IT Track — hoặc xem video nhận thưởng.</p>
+
+  <div class="reward">
+    <h3>🎬 +5 lượt AI</h3>
+    <p>Xem video ~30 giây khi hết quota.</p>
+    <button type="button">Xem video</button>
+  </div>
+  <div class="reward">
+    <h3>🔓 Mở level 1 ngày</h3>
+    <p>Thử N4/HSK4 trong 24 giờ.</p>
+    <button type="button">Xem video mở khóa</button>
+  </div>
+
+  <div class="plan featured">
+    <h3>Năm · Tiết kiệm 33%</h3>
+    <p class="price">799.000₫ <small>/ năm</small></p>
+    <p class="save">≈ 66.600₫ / tháng</p>
+    <ul>
+      <li>Tất cả level JLPT &amp; HSK</li>
+      <li>AI không giới hạn</li>
+      <li>IT Track đầy đủ</li>
+    </ul>
+    <button type="button" class="btn btn-green">Đăng ký năm</button>
+  </div>
+  <div class="plan">
+    <h3>Tháng</h3>
+    <p class="price">99.000₫ <small>/ tháng</small></p>
+    <ul>
+      <li>Mọi quyền lợi cơ bản</li>
+      <li>Hủy bất cứ lúc nào</li>
+    </ul>
+    <button type="button" class="btn btn-purple">Đăng ký tháng</button>
+  </div>
+
+  <p class="summary">Đang thử: <strong>JLPT N4</strong> đến 12/07/2026</p>
+  <div class="mock">S10 · mobile</div>
+</body>
+</html>

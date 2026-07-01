@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Admin (S12 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-card-yellow: #fef7d6;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-charcoal);
+      color: #e8e6e3;
+      min-height: 100dvh;
+      padding-bottom: var(--safe-b);
+    }
+    .header {
+      padding: 14px 16px; background: #252525;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header strong { font-size: 15px; color: #fff; }
+    .tag-draft {
+      font-size: 10px; font-weight: 600; padding: 3px 8px;
+      border-radius: 999px; background: var(--color-card-yellow); color: #92680a;
+    }
+    .btn-pub {
+      font: inherit; font-size: 12px; font-weight: 600;
+      padding: 8px 12px; border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+    }
+    main { padding: 16px; }
+    .title-input {
+      width: 100%; font: inherit; font-size: 18px; font-weight: 600;
+      background: transparent; border: none; color: #fff; margin-bottom: 10px;
+    }
+    .props { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .prop {
+      font-size: 11px; padding: 4px 8px; border-radius: 999px;
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+    }
+    .prop.ja { background: var(--color-lang-ja); color: #7b3ff2; }
+    .block {
+      background: #2f2f2f; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md); padding: 12px; margin-bottom: 8px;
+    }
+    .block.on { border-color: var(--color-primary); }
+    .btype { font-size: 9px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); margin-bottom: 4px; }
+    .block strong { font-size: 14px; color: #fff; display: block; }
+    .block p { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .block.del { opacity: 0.5; }
+    .block.del strong { text-decoration: line-through; }
+    .add {
+      width: 100%; padding: 12px; margin-top: 8px;
+      border: 1px dashed rgba(255,255,255,0.2); border-radius: var(--radius-md);
+      background: transparent; color: rgba(255,255,255,0.6);
+      font: inherit; font-size: 13px;
+    }
+    .sheet {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--color-canvas); color: var(--color-charcoal);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      padding: 16px 16px calc(16px + var(--safe-b));
+      max-height: 50vh; overflow-y: auto;
+    }
+    .sheet h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+    .sheet label { display: block; font-size: 12px; margin-bottom: 4px; color: var(--color-slate); }
+    .sheet textarea {
+      width: 100%; font: inherit; font-size: 14px; padding: 10px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      min-height: 80px; margin-bottom: 10px;
+    }
+    .sheet .save {
+      width: 100%; font: inherit; font-weight: 600; padding: 12px;
+      border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+    }
+    .mock { position: fixed; top: 56px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <strong>Admin · Lesson</strong>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="tag-draft">Draft</span>
+      <button type="button" class="btn-pub">Publish</button>
+    </div>
+  </header>
+  <main>
+    <input class="title-input" type="text" value="Bài 3 — Hiragana か" />
+    <div class="props">
+      <span class="prop ja">JA N5</span>
+      <span class="prop">Unit 1</span>
+      <span class="prop">order 3</span>
+    </div>
+    <div class="block">
+      <p class="btype">text</p>
+      <strong>Hàng か trong Hiragana</strong>
+      <p>Giải thích ngắn…</p>
+    </div>
+    <div class="block">
+      <p class="btype">vocab</p>
+      <strong>3 từ vựng</strong>
+      <p>か, き, く</p>
+    </div>
+    <div class="block on">
+      <p class="btype">exercise</p>
+      <strong>MCQ — chọn "ki"</strong>
+      <p>4 đáp án</p>
+    </div>
+    <div class="block del">
+      <p class="btype">reading</p>
+      <strong>Đoạn đọc</strong>
+      <p>Đã xóa mềm</p>
+    </div>
+    <button type="button" class="add">+ Thêm block</button>
+  </main>
+  <div class="sheet">
+    <h3>Sửa block · exercise</h3>
+    <label>Câu hỏi (VI)</label>
+    <textarea>Chọn Hiragana đúng với âm "ki":</textarea>
+    <button type="button" class="save">Lưu block</button>
+  </div>
+  <div class="mock">S12 · mobile · bottom sheet</div>
+</body>
+</html>

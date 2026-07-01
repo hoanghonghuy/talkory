@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Placement câu hỏi (S02 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100dvh;
+      padding-bottom: calc(20px + var(--safe-b));
+    }
+    .focus-header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .exit {
+      width: 36px; height: 36px; border: none; background: transparent;
+      border-radius: 999px; color: var(--color-slate);
+      display: grid; place-items: center; text-decoration: none;
+    }
+    .progress-wrap { flex: 1; }
+    .progress-meta { display: flex; justify-content: space-between; font-size: 11px; color: var(--color-slate); margin-bottom: 5px; }
+    .progress-bar { height: 5px; background: var(--color-hairline); border-radius: 999px; overflow: hidden; }
+    .progress-bar i { display: block; height: 100%; width: 35%; background: var(--color-lang-ja-accent); }
+    main { padding: 16px; max-width: 480px; margin: 0 auto; }
+    .coach { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .coach img { height: 52px; }
+    .coach p { font-size: 13px; color: var(--color-slate); line-height: 1.4; }
+    .q-card {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); padding: 18px; margin-bottom: 16px;
+    }
+    .q-type { font-size: 10px; font-weight: 600; text-transform: uppercase; color: #bbb8b1; margin-bottom: 8px; }
+    .q-card h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
+    .prompt {
+      font-family: var(--font-cjk); font-size: 20px; text-align: center;
+      padding: 14px; background: var(--color-surface); border-radius: var(--radius-md); margin-bottom: 12px;
+    }
+    .opt {
+      width: 100%; text-align: left; font: inherit; font-size: 15px;
+      padding: 14px 16px; margin-bottom: 8px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      background: var(--color-canvas);
+    }
+    .opt.on { border-color: var(--color-lang-ja-accent); background: rgba(123,63,242,0.08); }
+    .btn-next {
+      width: 100%; font: inherit; font-size: 16px; font-weight: 600;
+      padding: 14px; border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+      text-decoration: none; display: block; text-align: center;
+    }
+    .badge { position: fixed; bottom: 10px; right: 10px; font-size: 10px; padding: 4px 8px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <header class="focus-header">
+    <a href="S02-placement-picker.html" class="exit" aria-label="Thoát">✕</a>
+    <div class="progress-wrap">
+      <div class="progress-meta"><span>Câu 7/18</span><span>JLPT</span></div>
+      <div class="progress-bar"><i></i></div>
+    </div>
+  </header>
+  <main>
+    <div class="coach">
+      <img src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+      <p><strong>Sakko:</strong> Chọn cách đọc kanji gạch chân nhé!</p>
+    </div>
+    <div class="q-card">
+      <p class="q-type">Đọc kanji</p>
+      <h2>Kanji gạch chân đọc thế nào?</h2>
+      <p class="prompt">私は毎日<mark style="background:#e6e0f5;padding:0 2px">勉強</mark>します。</p>
+      <button type="button" class="opt">べんきょう</button>
+      <button type="button" class="opt on">べんきゅう</button>
+      <button type="button" class="opt">まなぶ</button>
+      <button type="button" class="opt">がくしゅう</button>
+    </div>
+    <a href="S02-placement-result.html" class="btn-next">Tiếp theo →</a>
+  </main>
+  <div class="badge">S02 question · mobile</div>
+</body>
+</html>

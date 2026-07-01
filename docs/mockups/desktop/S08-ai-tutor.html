@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — AI Tutor (S08)</title>
+  <!-- Borrow: Hanzii AI chat + Notion bubbles | Reject: dictionary UI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #ffffff;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --sidebar-w: 240px;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      position: fixed; left: 0; top: 0;
+      width: var(--sidebar-w); height: 100vh;
+      background: var(--color-surface);
+      border-right: 1px solid var(--color-hairline);
+      padding: 24px 0;
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 20px 24px;
+    }
+
+    .brand-mark {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      display: grid; place-items: center;
+    }
+
+    .brand h1 { font-size: 16px; font-weight: 600; color: var(--color-primary); }
+
+    .nav { padding: 0 8px; }
+    .nav a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; border-radius: var(--radius-md);
+      text-decoration: none; font-size: 14px; color: var(--color-slate);
+    }
+
+    .nav a.active {
+      background: rgba(86, 69, 212, 0.08);
+      color: var(--color-primary);
+      font-weight: 600;
+      box-shadow: inset 3px 0 0 var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .main-wrap {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100vh;
+    }
+
+    .chat-header {
+      padding: 16px 28px;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .chat-header h2 { font-size: 18px; font-weight: 600; }
+
+    .mode-toggle {
+      display: inline-flex;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      padding: 3px;
+    }
+
+    .mode-toggle button {
+      border: none; background: transparent;
+      font-family: inherit; font-size: 13px; font-weight: 500;
+      padding: 6px 14px; border-radius: var(--radius-md);
+      cursor: pointer; color: var(--color-slate);
+    }
+
+    .mode-toggle button.active {
+      background: var(--color-canvas);
+      color: var(--color-primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-card);
+    }
+
+    .quota-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+    }
+
+    .context-chip {
+      margin: 12px 28px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 6px 12px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      border-radius: 999px;
+      color: var(--color-slate);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 28px 24px;
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .msg {
+      max-width: 85%;
+      padding: 14px 16px;
+      border-radius: var(--radius-xl);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-bottom-right-radius: 4px;
+    }
+
+    .msg.assistant {
+      align-self: flex-start;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-bottom-left-radius: 4px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .msg.assistant .cjk {
+      font-family: var(--font-cjk);
+      font-weight: 500;
+    }
+
+    .msg.assistant ul {
+      margin: 10px 0 0 18px;
+      font-size: 14px;
+      color: var(--color-slate);
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 28px 12px;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .quick-actions button {
+      font-family: inherit;
+      font-size: 12px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-hairline);
+      border-radius: 999px;
+      background: var(--color-canvas);
+      color: var(--color-slate);
+      cursor: pointer;
+    }
+
+    .quick-actions button:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .chat-input-bar {
+      padding: 16px 28px 24px;
+      background: var(--color-canvas);
+      border-top: 1px solid var(--color-hairline);
+    }
+
+    .input-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .input-wrap textarea {
+      flex: 1;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 12px 14px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      resize: none;
+      min-height: 48px;
+      max-height: 120px;
+      line-height: 1.45;
+    }
+
+    .input-wrap textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(86, 69, 212, 0.12);
+    }
+
+    .send-btn {
+      width: 44px; height: 44px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: white;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">T</div>
+        <div><h1>Talkory</h1></div>
+      </div>
+      <nav class="nav">
+        <a href="S03-dashboard.html">Trang chủ</a>
+        <a href="S04-curriculum.html">Học</a>
+        <a href="#" class="active">AI Tutor</a>
+      </nav>
+    </aside>
+
+    <div class="main-wrap">
+      <header class="chat-header">
+        <h2>AI Tutor</h2>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div class="mode-toggle">
+            <button type="button">Tự do</button>
+            <button type="button" class="active">Theo bài học</button>
+          </div>
+          <span class="quota-badge">3/5 lượt hôm nay</span>
+        </div>
+      </header>
+
+      <div class="context-chip">
+        📎 Ngữ cảnh: <strong>Bài 3 — Hiragana hàng か</strong> (JLPT N5)
+      </div>
+
+      <div class="chat-messages">
+        <div class="msg user">
+          Giải thích giúp mình sự khác nhau giữa き và さ trong hàng ka/sa?
+        </div>
+        <div class="msg assistant">
+          <p><span class="cjk">き</span> (ki) và <span class="cjk">さ</span> (sa) thuộc hai hàng khác nhau trong bảng Hiragana:</p>
+          <ul>
+            <li><strong>Hàng か:</strong> か・き・く・け・こ — âm bắt đầu bằng /k/</li>
+            <li><strong>Hàng さ:</strong> さ・し・す・せ・そ — âm bắt đầu bằng /s/</li>
+          </ul>
+          <p style="margin-top:10px"><span class="cjk">き</span> có 4 nét, đọc <em>ki</em>. Ví dụ: <span class="cjk">木</span> (cây) đọc き khi đứng một mình trong N5.</p>
+        </div>
+        <div class="msg user">
+          Cho mình 2 câu ví dụ dùng き trong từ vựng N5.
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <button type="button">Giải thích ngữ pháp</button>
+        <button type="button">Sửa câu của tôi</button>
+        <button type="button">Tạo bài tập</button>
+        <button type="button">Dịch sang tiếng Việt</button>
+      </div>
+
+      <footer class="chat-input-bar">
+        <div class="input-wrap">
+          <textarea rows="1" placeholder="Hỏi về bài học, ngữ pháp, hoặc dán câu cần sửa…"></textarea>
+          <button type="button" class="send-btn" aria-label="Gửi">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="mockup-badge">S08 · AI Tutor · Desktop · /ai</div>
+</body>
+</html>

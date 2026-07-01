@@ -26,7 +26,7 @@
 | Mascot | **Sakko (nữ) + Longmi (nam, rồng)** — PNG `docs/assets/mascots/` |
 | Themes | Palette × light/dark — user chọn trong Settings |
 | Spec format | `docs/spec/` — **không** OpenSpec product |
-| UI mockups | HTML tay trong `docs/mockups/` — checklist `docs/spec/references/mockups.md` (không dùng Stitch) |
+| UI mockups | `docs/mockups/` — `desktop/` · `tablet/` · `mobile/` + [index.html](../docs/mockups/index.html); checklist `docs/spec/references/mockups.md` |
 
 ## Chưa chốt (TBD)
 

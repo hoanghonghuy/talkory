@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Đăng ký (S01 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #fff;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      padding: max(16px, env(safe-area-inset-top)) 20px calc(24px + var(--safe-b));
+    }
+    h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .lead { font-size: 14px; color: var(--color-slate); margin-bottom: 16px; }
+    .note {
+      font-size: 13px; padding: 12px; background: var(--color-success-soft);
+      border-radius: var(--radius-md); margin-bottom: 18px; line-height: 1.45;
+    }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+    .field input, .field select {
+      width: 100%; font: inherit; font-size: 16px;
+      padding: 12px; border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+    }
+    .btn {
+      width: 100%; font: inherit; font-size: 16px; font-weight: 600;
+      padding: 13px; border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff; margin-top: 8px;
+    }
+    .footer { text-align: center; margin-top: 16px; font-size: 14px; color: var(--color-slate); }
+    .footer a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+    .mock { position: fixed; bottom: 8px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <h1>Tạo tài khoản</h1>
+  <p class="lead">Lưu tiến độ và streak của bạn</p>
+  <p class="note">💡 Tiến độ guest sẽ được <strong>gộp</strong> sau khi đăng ký.</p>
+  <form>
+    <div class="field"><label>Tên</label><input type="text" value="Minh" /></div>
+    <div class="field"><label>Email</label><input type="email" placeholder="ban@email.com" /></div>
+    <div class="field"><label>Mật khẩu</label><input type="password" placeholder="Ít nhất 8 ký tự" /></div>
+    <div class="field"><label>Ngôn ngữ</label><select><option>Tiếng Việt</option></select></div>
+    <button type="submit" class="btn">Đăng ký miễn phí</button>
+  </form>
+  <p class="footer">Đã có tài khoản? <a href="S01-auth-login.html">Đăng nhập</a></p>
+  <div class="mock">S01 register · mobile</div>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Cài đặt (S11)</title>
+  <!-- Borrow: Cal.com forms + DESIGN.md theme picker | Reject: LingoDeer Me clutter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #ffffff;
+      --color-error: #e03131;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --sidebar-w: 240px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      position: fixed; left: 0; top: 0;
+      width: var(--sidebar-w); height: 100vh;
+      background: var(--color-surface);
+      border-right: 1px solid var(--color-hairline);
+      padding: 24px 0;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 20px 28px;
+    }
+
+    .brand-mark {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: white;
+      font-weight: 700;
+      display: grid; place-items: center;
+    }
+
+    .nav { padding: 0 8px; }
+    .nav a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--color-slate);
+    }
+
+    .nav a.active {
+      background: rgba(86, 69, 212, 0.08);
+      color: var(--color-primary);
+      font-weight: 600;
+      box-shadow: inset 3px 0 0 var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .main-wrap {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 32px;
+      max-width: 720px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+
+    .section {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-muted);
+      margin-bottom: 16px;
+    }
+
+    .field { margin-bottom: 16px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      max-width: 320px;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 9px 12px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+    }
+
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .theme-swatch {
+      border: 2px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      cursor: pointer;
+      text-align: center;
+      background: var(--color-canvas);
+      transition: border-color 0.15s;
+    }
+
+    .theme-swatch.active {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 1px var(--color-primary);
+    }
+
+    .swatch-colors {
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .swatch-colors span {
+      width: 24px; height: 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .theme-swatch strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .mode-toggle {
+      display: inline-flex;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .mode-toggle button {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 20px;
+      border: none;
+      background: var(--color-canvas);
+      color: var(--color-slate);
+      cursor: pointer;
+    }
+
+    .mode-toggle button.active {
+      background: var(--color-primary);
+      color: white;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slider-row input[type="range"] { flex: 1; max-width: 240px; }
+
+    .slider-val {
+      font-size: 15px;
+      font-weight: 600;
+      min-width: 72px;
+    }
+
+    .sub-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .sub-row a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .btn-logout {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 16px;
+      border: 1px solid var(--color-error);
+      border-radius: var(--radius-md);
+      background: transparent;
+      color: var(--color-error);
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">T</div>
+      </div>
+      <nav class="nav">
+        <a href="S03-dashboard.html">Trang chủ</a>
+        <a href="#" class="active">Cài đặt</a>
+      </nav>
+    </aside>
+
+    <div class="main-wrap">
+      <h1>Cài đặt</h1>
+
+      <section class="section">
+        <h2>Hồ sơ</h2>
+        <div class="field">
+          <label for="name">Tên hiển thị</label>
+          <input id="name" type="text" value="Minh" />
+        </div>
+        <div class="field">
+          <label for="locale">Ngôn ngữ giao diện</label>
+          <select id="locale">
+            <option selected>Tiếng Việt</option>
+            <option>English</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Giao diện</h2>
+        <div class="theme-grid">
+          <div class="theme-swatch active">
+            <div class="swatch-colors">
+              <span style="background:#5645d4"></span>
+              <span style="background:#f6f5f4"></span>
+              <span style="background:#ffffff"></span>
+            </div>
+            <strong>Classic</strong>
+          </div>
+          <div class="theme-swatch">
+            <div class="swatch-colors">
+              <span style="background:#e85d8a"></span>
+              <span style="background:#fdf2f6"></span>
+              <span style="background:#ffffff"></span>
+            </div>
+            <strong>Sakura</strong>
+          </div>
+          <div class="theme-swatch">
+            <div class="swatch-colors">
+              <span style="background:#0d9488"></span>
+              <span style="background:#f0fdfa"></span>
+              <span style="background:#ffffff"></span>
+            </div>
+            <strong>Jade</strong>
+          </div>
+        </div>
+        <div class="field">
+          <label>Chế độ</label>
+          <div class="mode-toggle">
+            <button type="button" class="active">Sáng</button>
+            <button type="button">Tối</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Mục tiêu học</h2>
+        <div class="field">
+          <label for="goal">Phút học mỗi ngày</label>
+          <div class="slider-row">
+            <input id="goal" type="range" min="5" max="60" step="5" value="15" />
+            <span class="slider-val">15 phút</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Gói đăng ký</h2>
+        <div class="sub-row">
+          <span>Gói miễn phí · N5 &amp; HSK1</span>
+          <a href="S10-rewards.html">Nâng cấp Premium →</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Tài khoản</h2>
+        <p style="font-size:14px;color:var(--color-slate);margin-bottom:12px">minh@email.com · Đã liên kết Google</p>
+        <button type="button" class="btn-logout">Đăng xuất</button>
+      </section>
+    </div>
+  </div>
+
+  <div class="mockup-badge">S11 · Settings · Desktop · /settings</div>
+</body>
+</html>

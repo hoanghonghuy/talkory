@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Placement tiếng Nhật (S02)</title>
+  <!-- Borrow: Migii diagnostic + LingoDeer MCQ | Reject: sidebar -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #ffffff;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-focus-canvas: #fafaf9;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .focus-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .exit-btn {
+      width: 36px; height: 36px;
+      border: none;
+      background: transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--color-slate);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .exit-btn:hover { background: var(--color-surface); }
+
+    .progress-wrap { flex: 1; max-width: 480px; margin: 0 auto; }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--color-slate);
+      margin-bottom: 6px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: var(--color-hairline);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-bar i {
+      display: block;
+      height: 100%;
+      width: 35%;
+      background: var(--color-lang-ja-accent);
+      border-radius: 999px;
+    }
+
+    .lang-pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+      flex-shrink: 0;
+    }
+
+    .focus-body {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 48px;
+    }
+
+    .coach-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .coach-row img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .coach-row p {
+      font-size: 14px;
+      color: var(--color-slate);
+      line-height: 1.45;
+    }
+
+    .coach-row strong { color: var(--color-lang-ja-accent); }
+
+    .question-card {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .q-type {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+      margin-bottom: 12px;
+    }
+
+    .question-card h2 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-bottom: 20px;
+    }
+
+    .prompt-cjk {
+      font-family: var(--font-cjk);
+      font-size: 28px;
+      font-weight: 500;
+      text-align: center;
+      padding: 20px;
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    .options { display: flex; flex-direction: column; gap: 10px; }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      cursor: pointer;
+      font-size: 15px;
+      text-align: left;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .option:hover { border-color: var(--color-lang-ja-accent); background: rgba(123, 63, 242, 0.04); }
+
+    .option.selected {
+      border-color: var(--color-lang-ja-accent);
+      background: rgba(123, 63, 242, 0.08);
+      box-shadow: 0 0 0 1px var(--color-lang-ja-accent);
+    }
+
+    .option-key {
+      width: 28px; height: 28px;
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-slate);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .option.selected .option-key {
+      background: var(--color-lang-ja-accent);
+      color: white;
+    }
+
+    .option-cjk { font-family: var(--font-cjk); }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .btn-next {
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 11px 28px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      cursor: pointer;
+    }
+
+    .btn-next:hover { background: var(--color-primary-pressed); }
+
+    .skip-q {
+      font-size: 13px;
+      color: var(--color-muted);
+      text-decoration: none;
+    }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <header class="focus-header">
+    <button type="button" class="exit-btn" aria-label="Thoát" title="Thoát">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span>Câu 7 / 18</span>
+        <span>Placement tiếng Nhật</span>
+      </div>
+      <div class="progress-bar"><i></i></div>
+    </div>
+    <span class="lang-pill">JLPT</span>
+  </header>
+
+  <div class="focus-body">
+    <div class="coach-row">
+      <img src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+      <p><strong>Sakko:</strong> Chọn cách đọc đúng của kanji trong câu nhé — không cần vội!</p>
+    </div>
+
+    <div class="question-card">
+      <p class="q-type">Đọc kanji</p>
+      <h2>Trong câu sau, kanji được gạch chân đọc thế nào?</h2>
+      <p class="prompt-cjk">私は毎日<mark style="background:#e6e0f5;padding:0 4px;border-radius:4px">勉強</mark>します。</p>
+      <div class="options" role="radiogroup">
+        <button type="button" class="option">
+          <span class="option-key">A</span>
+          <span class="option-cjk">べんきょう</span>
+        </button>
+        <button type="button" class="option selected">
+          <span class="option-key">B</span>
+          <span class="option-cjk">べんきゅう</span>
+        </button>
+        <button type="button" class="option">
+          <span class="option-key">C</span>
+          <span class="option-cjk">まなぶ</span>
+        </button>
+        <button type="button" class="option">
+          <span class="option-key">D</span>
+          <span class="option-cjk">がくしゅう</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="S02-placement-picker.html" class="skip-q">Bỏ qua placement</a>
+      <a href="S02-placement-result.html" class="btn-next" style="text-decoration:none;display:inline-block">Tiếp theo →</a>
+    </div>
+  </div>
+
+  <div class="mockup-badge">S02 · Placement question · Desktop</div>
+</body>
+</html>

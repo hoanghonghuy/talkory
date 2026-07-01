@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Cài đặt (S11 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-error: #e03131;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --nav-h: 64px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-surface);
+      padding: max(8px, env(safe-area-inset-top)) 16px calc(var(--nav-h) + var(--safe-b) + 8px);
+    }
+    h1 { font-size: 22px; font-weight: 600; margin-bottom: 16px; }
+    .section {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px;
+    }
+    .section h2 {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--color-muted); margin-bottom: 12px;
+    }
+    .field { margin-bottom: 12px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+    .field input, .field select {
+      width: 100%; font: inherit; font-size: 16px;
+      padding: 11px; border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+    }
+    .themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .theme {
+      border: 2px solid var(--color-hairline); border-radius: var(--radius-lg);
+      padding: 10px 6px; text-align: center; font-size: 12px; font-weight: 600;
+    }
+    .theme.on { border-color: var(--color-primary); }
+    .sw { display: flex; gap: 3px; justify-content: center; margin-bottom: 6px; }
+    .sw span { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.08); }
+    .mode { display: flex; border: 1px solid var(--color-hairline); border-radius: var(--radius-md); overflow: hidden; }
+    .mode button {
+      flex: 1; font: inherit; font-size: 13px; padding: 10px;
+      border: none; background: var(--color-canvas); color: var(--color-slate);
+    }
+    .mode button.on { background: var(--color-primary); color: #fff; }
+    .row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+    .row a { color: var(--color-primary); font-weight: 600; text-decoration: none; font-size: 13px; }
+    .logout {
+      width: 100%; font: inherit; font-size: 14px; padding: 11px;
+      border: 1px solid var(--color-error); border-radius: var(--radius-md);
+      background: transparent; color: var(--color-error); margin-top: 8px;
+    }
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: var(--color-canvas); border-top: 1px solid var(--color-hairline);
+      padding: 6px 4px calc(6px + var(--safe-b));
+      display: grid; grid-template-columns: repeat(5, 1fr);
+    }
+    .bottom-nav a {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 10px; color: var(--color-slate); text-decoration: none;
+    }
+    .bottom-nav a.active { color: var(--color-primary); font-weight: 600; }
+    .bottom-nav svg { width: 22px; height: 22px; }
+    .mock { position: fixed; bottom: calc(var(--nav-h) + 6px); right: 6px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <h1>Cài đặt</h1>
+
+  <section class="section">
+    <h2>Hồ sơ</h2>
+    <div class="field"><label>Tên hiển thị</label><input type="text" value="Minh" /></div>
+    <div class="field"><label>Ngôn ngữ</label><select><option>Tiếng Việt</option><option>English</option></select></div>
+  </section>
+
+  <section class="section">
+    <h2>Giao diện</h2>
+    <div class="themes">
+      <div class="theme on">
+        <div class="sw"><span style="background:#5645d4"></span><span style="background:#f6f5f4"></span></div>
+        Classic
+      </div>
+      <div class="theme">
+        <div class="sw"><span style="background:#e85d8a"></span><span style="background:#fdf2f6"></span></div>
+        Sakura
+      </div>
+      <div class="theme">
+        <div class="sw"><span style="background:#0d9488"></span><span style="background:#f0fdfa"></span></div>
+        Jade
+      </div>
+    </div>
+    <div class="mode">
+      <button type="button" class="on">Sáng</button>
+      <button type="button">Tối</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Mục tiêu</h2>
+    <div class="field">
+      <label>Phút / ngày: <strong>15</strong></label>
+      <input type="range" min="5" max="60" step="5" value="15" />
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Gói</h2>
+    <div class="row">
+      <span>Miễn phí · N5/HSK1</span>
+      <a href="S10-rewards.html">Nâng cấp →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Tài khoản</h2>
+    <p style="font-size:13px;color:var(--color-slate);margin-bottom:8px">minh@email.com</p>
+    <button type="button" class="logout">Đăng xuất</button>
+  </section>
+
+  <nav class="bottom-nav">
+    <a href="S03-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>Trang chủ</a>
+    <a href="S04-curriculum.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>Học</a>
+    <a href="S06-srs.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/></svg>Ôn</a>
+    <a href="S09-it-track.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/></svg>IT</a>
+    <a href="#" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Cài đặt</a>
+  </nav>
+  <div class="mock">S11 · mobile</div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Ôn SRS (S06)</title>
+  <!-- Borrow: Anki reviewer + WaniKani due + Spotify CJK | Reject: sidebar, heavy chrome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #ffffff;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-success-soft: #c3f0d2;
+      --color-warning: #dd5b00;
+      --color-warning-soft: #fff0e6;
+      --color-error: #e03131;
+      --color-error-soft: #fde8e8;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-focus-canvas: #fafaf9;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .review-header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .exit-btn {
+      width: 36px; height: 36px;
+      border: none;
+      background: transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--color-slate);
+      display: grid;
+      place-items: center;
+    }
+
+    .exit-btn:hover { background: var(--color-surface); }
+
+    .due-count {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-charcoal);
+    }
+
+    .due-count span {
+      color: var(--color-success);
+    }
+
+    .deck-filter {
+      font-size: 13px;
+      color: var(--color-slate);
+      padding: 6px 12px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      cursor: pointer;
+    }
+
+    .review-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px 120px;
+    }
+
+    .flashcard {
+      width: 100%;
+      max-width: 520px;
+      min-height: 280px;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-elevated);
+      padding: 40px 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+    }
+
+    .flashcard:hover { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); }
+
+    .card-type {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+      margin-bottom: 24px;
+    }
+
+    .card-front {
+      font-family: var(--font-cjk);
+      font-size: 72px;
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .card-hint {
+      font-size: 14px;
+      color: var(--color-muted);
+    }
+
+    .card-back {
+      display: none;
+    }
+
+    /* Mockup: hiển thị trạng thái đã lật (back + rating) */
+    .flashcard.revealed .card-front { font-size: 48px; margin-bottom: 8px; }
+    .flashcard.revealed .card-hint { display: none; }
+
+    .flashcard.revealed .card-back {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .reading {
+      font-family: var(--font-cjk);
+      font-size: 22px;
+      color: var(--color-slate);
+      margin-bottom: 8px;
+    }
+
+    .meaning {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      margin-bottom: 4px;
+    }
+
+    .example {
+      font-size: 14px;
+      color: var(--color-slate);
+      margin-top: 12px;
+      font-family: var(--font-cjk);
+    }
+
+    .flip-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+
+    .rating-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-canvas);
+      border-top: 1px solid var(--color-hairline);
+      padding: 16px 32px 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .rate-btn {
+      font-family: inherit;
+      padding: 14px 8px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .rate-btn:hover { border-color: var(--color-charcoal); }
+
+    .rate-btn strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .rate-btn span {
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+
+    .rate-btn kbd {
+      font-size: 10px;
+      padding: 1px 5px;
+      border: 1px solid var(--color-hairline);
+      border-radius: 4px;
+      background: var(--color-surface);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .rate-again strong { color: var(--color-error); }
+    .rate-again:hover { background: var(--color-error-soft); border-color: var(--color-error); }
+
+    .rate-hard strong { color: var(--color-warning); }
+    .rate-hard:hover { background: var(--color-warning-soft); border-color: var(--color-warning); }
+
+    .rate-good strong { color: var(--color-success); }
+    .rate-good:hover { background: var(--color-success-soft); border-color: var(--color-success); }
+
+    .rate-easy strong { color: var(--color-success); }
+    .rate-easy:hover { background: var(--color-success-soft); border-color: var(--color-success-bright); }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 100px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <header class="review-header">
+    <div class="review-header-left">
+      <a href="S03-dashboard.html" class="exit-btn" aria-label="Thoát">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </a>
+      <p class="due-count">Còn <span>24</span> thẻ · Thẻ 5/24</p>
+    </div>
+    <button type="button" class="deck-filter">Deck: Tất cả ▾</button>
+  </header>
+
+  <main class="review-main">
+    <!-- class "revealed" = trạng thái sau khi lật (mockup hiển thị cả back + rating) -->
+    <article class="flashcard revealed" aria-label="Flashcard">
+      <p class="card-type">Kanji · JLPT N5</p>
+      <p class="card-front">勉強</p>
+      <p class="card-hint">Nhấn Space hoặc click để lật</p>
+      <div class="card-back">
+        <p class="reading">べんきょう</p>
+        <p class="meaning">học tập, học hành</p>
+        <p class="example">毎日日本語を勉強しています。</p>
+      </div>
+    </article>
+    <p class="flip-note">Bạn nhớ mức độ nào? Chọn đánh giá bên dưới.</p>
+  </main>
+
+  <footer class="rating-bar" role="group" aria-label="Đánh giá thẻ">
+    <button type="button" class="rate-btn rate-again">
+      <strong>Again</strong>
+      <span>&lt; 1 ngày</span>
+      <kbd>1</kbd>
+    </button>
+    <button type="button" class="rate-btn rate-hard">
+      <strong>Hard</strong>
+      <span>~2 ngày</span>
+      <kbd>2</kbd>
+    </button>
+    <button type="button" class="rate-btn rate-good">
+      <strong>Good</strong>
+      <span>~4 ngày</span>
+      <kbd>3</kbd>
+    </button>
+    <button type="button" class="rate-btn rate-easy">
+      <strong>Easy</strong>
+      <span>~7 ngày</span>
+      <kbd>4</kbd>
+    </button>
+  </footer>
+
+  <div class="mockup-badge">S06 · SRS review · Desktop · back + rating</div>
+</body>
+</html>

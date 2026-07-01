@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-tablet-preview="768" />
+  <title>Talkory — Đăng nhập (S01 tablet)</title>
+  <!-- Borrow: Cal.com form + Brottin tone | Reject: sidebar, neon gamification -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #ffffff;
+      --color-link: #0075de;
+      --color-error: #e03131;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-surface-soft: #fafaf9;
+      --color-hairline: #e5e3df;
+      --color-ink: #1a1a1a;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-lang-zh: #dcecfa;
+      --color-lang-zh-accent: #2a9d99;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .auth-shell {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    .auth-brand {
+      background: linear-gradient(145deg, #f0edfc 0%, var(--color-surface) 55%, #e8f4fc 100%);
+      border-right: 1px solid var(--color-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .auth-brand::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: var(--color-lang-ja);
+      opacity: 0.35;
+      top: -80px;
+      right: -60px;
+      filter: blur(40px);
+    }
+
+    .auth-brand::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: var(--color-lang-zh);
+      opacity: 0.4;
+      bottom: -40px;
+      left: -40px;
+      filter: blur(40px);
+    }
+
+    .brand-content { position: relative; z-index: 1; }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      font-weight: 700;
+      font-size: 22px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+    }
+
+    .brand-content h1 {
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: var(--color-charcoal);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .brand-content p {
+      font-size: 16px;
+      color: var(--color-slate);
+      line-height: 1.6;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .mascot-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .mascot-row img {
+      height: 140px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+    }
+
+    .auth-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 32px;
+      background: var(--color-canvas);
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .auth-card h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--color-charcoal);
+      margin-bottom: 6px;
+    }
+
+    .auth-card .lead {
+      font-size: 15px;
+      color: var(--color-slate);
+      margin-bottom: 28px;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-charcoal);
+      margin-bottom: 6px;
+    }
+
+    .field input {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 10px 12px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      color: var(--color-ink);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(86, 69, 212, 0.12);
+    }
+
+    .field input::placeholder { color: var(--color-muted); }
+
+    .field-hint {
+      font-size: 12px;
+      color: var(--color-slate);
+      margin-top: 6px;
+    }
+
+    .field-hint a {
+      color: var(--color-link);
+      text-decoration: none;
+    }
+
+    .field-hint a:hover { text-decoration: underline; }
+
+    .field-hint.disabled {
+      color: var(--color-muted);
+      cursor: not-allowed;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 11px 16px;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      margin-bottom: 12px;
+    }
+
+    .btn-primary:hover { background: var(--color-primary-pressed); }
+
+    .btn-google {
+      background: var(--color-canvas);
+      color: var(--color-charcoal);
+      border: 1px solid var(--color-hairline);
+      margin-bottom: 16px;
+    }
+
+    .btn-google:hover { background: var(--color-surface-soft); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-slate);
+      font-weight: 500;
+      font-size: 14px;
+      padding: 8px;
+      margin-bottom: 24px;
+    }
+
+    .btn-ghost:hover { color: var(--color-charcoal); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--color-hairline);
+    }
+
+    .footer-link {
+      text-align: center;
+      font-size: 14px;
+      color: var(--color-slate);
+    }
+
+    .footer-link a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .footer-link a:hover { text-decoration: underline; }
+
+    .locale-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-hairline);
+    }
+
+    .locale-row label {
+      font-size: 13px;
+      color: var(--color-slate);
+    }
+
+    .locale-select {
+      font-family: inherit;
+      font-size: 13px;
+      padding: 6px 10px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      color: var(--color-charcoal);
+    }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-shell">
+    <aside class="auth-brand" aria-hidden="true">
+      <div class="brand-content">
+        <div class="brand-mark">T</div>
+        <h1>Học Nhật &amp; Trung<br />theo lộ trình JLPT / HSK</h1>
+        <p>Luyện tập bài bản, ôn SRS thông minh — dành cho người Việt. Sakko và Longmi sẽ đồng hành cùng bạn.</p>
+        <div class="mascot-row">
+          <img src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+          <img src="../../assets/mascots/longmi-idle-transparent.png" alt="" />
+        </div>
+      </div>
+    </aside>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+        <h2>Đăng nhập</h2>
+        <p class="lead">Chào mừng trở lại Talkory</p>
+
+        <div class="locale-row">
+          <label for="locale">Ngôn ngữ giao diện</label>
+          <select id="locale" class="locale-select" aria-label="Ngôn ngữ giao diện">
+            <option value="vi" selected>Tiếng Việt</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
+        <form action="#" method="post" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="ban@email.com" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="password">Mật khẩu</label>
+            <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+            <p class="field-hint disabled" title="Phase sau">Quên mật khẩu? (sắp có)</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        </form>
+
+        <div class="divider">hoặc</div>
+
+        <button type="button" class="btn btn-google">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          Đăng nhập bằng Google
+        </button>
+
+        <button type="button" class="btn btn-ghost">Tiếp tục không đăng ký →</button>
+
+        <p class="footer-link">
+          Chưa có tài khoản? <a href="S01-auth-register.html">Đăng ký miễn phí</a>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="mockup-badge">S01 · Login · Tablet mockup</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Mockup index</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --c-primary: #5645d4; --c-surface: #f6f5f4; --c-hairline: #e5e3df; --c-ink: #37352f; --c-slate: #5d5b54; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--c-surface); color: var(--c-ink); padding: 32px 24px; max-width: 960px; margin: 0 auto; }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    p.lead { color: var(--c-slate); margin-bottom: 28px; line-height: 1.5; }
+    h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--c-slate); margin: 24px 0 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+    a.card {
+      display: block; padding: 14px 16px; background: #fff;
+      border: 1px solid var(--c-hairline); border-radius: 10px;
+      text-decoration: none; color: var(--c-ink); font-size: 14px; font-weight: 500;
+      transition: border-color 0.15s;
+    }
+    a.card:hover { border-color: var(--c-primary); color: var(--c-primary); }
+    a.card small { display: block; font-size: 12px; font-weight: 400; color: var(--c-slate); margin-top: 4px; }
+    .hub { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 8px; }
+    .hub a {
+      padding: 20px; background: #fff; border: 2px solid var(--c-hairline);
+      border-radius: 12px; text-decoration: none; color: var(--c-ink);
+      font-weight: 600; text-align: center;
+    }
+    .hub a:hover { border-color: var(--c-primary); }
+    .hub a span { display: block; font-size: 12px; font-weight: 400; color: var(--c-slate); margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Talkory Mockups</h1>
+  <p class="lead">HTML tham chiếu UI — bám <code>DESIGN.md</code>. Chọn thiết bị rồi mở từng màn.</p>
+
+  <div class="hub">
+    <a href="desktop/S03-dashboard.html">Desktop<span>≥1024px · sidebar 240px</span></a>
+    <a href="tablet/S03-dashboard.html">Tablet<span>768px · sidebar 200px</span></a>
+    <a href="mobile/S03-dashboard.html">Mobile<span>390px · bottom nav</span></a>
+  </div>
+
+  <h2>Desktop — <a href="desktop/S03-dashboard.html" style="color:var(--c-primary);font-size:13px;text-transform:none;letter-spacing:0">Hub →</a></h2>
+  <div class="grid">
+    <a class="card" href="desktop/S01-auth-login.html">S01 Login<small>/auth/login</small></a>
+    <a class="card" href="desktop/S01-auth-register.html">S01 Register</a>
+    <a class="card" href="desktop/S02-placement-picker.html">S02 Picker</a>
+    <a class="card" href="desktop/S02-placement-question.html">S02 Question</a>
+    <a class="card" href="desktop/S02-placement-result.html">S02 Result</a>
+    <a class="card" href="desktop/S03-dashboard.html">S03 Dashboard</a>
+    <a class="card" href="desktop/S04-curriculum.html">S04 Curriculum</a>
+    <a class="card" href="desktop/S05-lesson.html">S05 Lesson</a>
+    <a class="card" href="desktop/S06-srs.html">S06 SRS</a>
+    <a class="card" href="desktop/S07-writing.html">S07 Writing</a>
+    <a class="card" href="desktop/S08-ai-tutor.html">S08 AI Tutor</a>
+    <a class="card" href="desktop/S09-it-track.html">S09 IT</a>
+    <a class="card" href="desktop/S10-rewards.html">S10 Premium</a>
+    <a class="card" href="desktop/S11-settings.html">S11 Settings</a>
+    <a class="card" href="desktop/S12-admin.html">S12 Admin</a>
+  </div>
+
+  <h2>Mobile</h2>
+  <div class="grid">
+    <a class="card" href="mobile/S01-auth-login.html">S01 Login</a>
+    <a class="card" href="mobile/S01-auth-register.html">S01 Register</a>
+    <a class="card" href="mobile/S02-placement-picker.html">S02 Picker</a>
+    <a class="card" href="mobile/S02-placement-question.html">S02 Question</a>
+    <a class="card" href="mobile/S02-placement-result.html">S02 Result</a>
+    <a class="card" href="mobile/S03-dashboard.html">S03 Dashboard</a>
+    <a class="card" href="mobile/S04-curriculum.html">S04 Curriculum</a>
+    <a class="card" href="mobile/S05-lesson.html">S05 Lesson</a>
+    <a class="card" href="mobile/S06-srs.html">S06 SRS</a>
+    <a class="card" href="mobile/S07-writing.html">S07 Writing</a>
+    <a class="card" href="mobile/S08-ai-tutor.html">S08 AI</a>
+    <a class="card" href="mobile/S09-it-track.html">S09 IT</a>
+    <a class="card" href="mobile/S10-rewards.html">S10 Premium</a>
+    <a class="card" href="mobile/S11-settings.html">S11 Settings</a>
+    <a class="card" href="mobile/S12-admin.html">S12 Admin</a>
+  </div>
+
+  <h2>Tablet</h2>
+  <div class="grid">
+    <a class="card" href="tablet/S01-auth-login.html">S01 Login</a>
+    <a class="card" href="tablet/S01-auth-register.html">S01 Register</a>
+    <a class="card" href="tablet/S02-placement-picker.html">S02 Picker</a>
+    <a class="card" href="tablet/S02-placement-question.html">S02 Question</a>
+    <a class="card" href="tablet/S02-placement-result.html">S02 Result</a>
+    <a class="card" href="tablet/S03-dashboard.html">S03 Dashboard</a>
+    <a class="card" href="tablet/S04-curriculum.html">S04 Curriculum</a>
+    <a class="card" href="tablet/S05-lesson.html">S05 Lesson</a>
+    <a class="card" href="tablet/S06-srs.html">S06 SRS</a>
+    <a class="card" href="tablet/S07-writing.html">S07 Writing</a>
+    <a class="card" href="tablet/S08-ai-tutor.html">S08 AI</a>
+    <a class="card" href="tablet/S09-it-track.html">S09 IT</a>
+    <a class="card" href="tablet/S10-rewards.html">S10 Premium</a>
+    <a class="card" href="tablet/S11-settings.html">S11 Settings</a>
+    <a class="card" href="tablet/S12-admin.html">S12 Admin</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Kết quả placement (S02 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #fff;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100dvh;
+      padding: max(20px, env(safe-area-inset-top)) 20px calc(24px + var(--safe-b));
+    }
+    .mascot { display: block; height: 100px; margin: 0 auto 16px; object-fit: contain; }
+    h1 { font-size: 24px; font-weight: 600; text-align: center; margin-bottom: 8px; }
+    .lead { font-size: 15px; color: var(--color-slate); text-align: center; line-height: 1.5; margin-bottom: 20px; }
+    .level-card {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl); padding: 20px; margin-bottom: 16px;
+    }
+    .head { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
+    .badge {
+      width: 48px; height: 48px; border-radius: var(--radius-md);
+      background: var(--color-lang-ja); color: var(--color-lang-ja-accent);
+      font-weight: 700; font-size: 16px; display: grid; place-items: center; flex-shrink: 0;
+    }
+    .head h2 { font-size: 18px; font-weight: 600; }
+    .head h2 span { display: block; font-size: 13px; font-weight: 400; color: var(--color-slate); margin-top: 2px; }
+    .scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .scores div {
+      background: var(--color-surface); border-radius: var(--radius-md);
+      padding: 10px 6px; text-align: center;
+    }
+    .scores strong { display: block; font-size: 16px; color: var(--color-success); }
+    .scores span { font-size: 10px; color: var(--color-slate); }
+    .note {
+      font-size: 13px; color: var(--color-charcoal); line-height: 1.45;
+      padding: 12px; background: var(--color-success-soft); border-radius: var(--radius-md);
+    }
+    .btn {
+      display: block; width: 100%; font: inherit; font-size: 16px; font-weight: 600;
+      padding: 14px; border: none; border-radius: var(--radius-md);
+      text-align: center; text-decoration: none; margin-bottom: 10px;
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn-secondary {
+      background: var(--color-canvas); color: var(--color-slate);
+      border: 1px solid var(--color-hairline); font-weight: 500; font-size: 14px;
+    }
+    .mock { position: fixed; bottom: 8px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <img class="mascot" src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+  <h1>Xong rồi! 🎉</h1>
+  <p class="lead">Talkory gợi ý level phù hợp từ 18 câu trả lời của bạn.</p>
+
+  <div class="level-card">
+    <div class="head">
+      <div class="badge">N4</div>
+      <h2>JLPT N4<span>Đề xuất bắt đầu tại đây</span></h2>
+    </div>
+    <div class="scores">
+      <div><strong>72%</strong><span>Từ vựng</span></div>
+      <div><strong>65%</strong><span>Ngữ pháp</span></div>
+      <div><strong>58%</strong><span>Kanji</span></div>
+    </div>
+    <p class="note">Bạn nắm khá N5. Kanji N4 sẽ được ôn lại qua SRS sau mỗi bài.</p>
+  </div>
+
+  <a href="S04-curriculum.html" class="btn btn-primary">Bắt đầu học N4 →</a>
+  <a href="S02-placement-picker.html" class="btn btn-secondary">Làm placement tiếng Trung</a>
+  <div class="mock">S02 result · mobile</div>
+</body>
+</html>

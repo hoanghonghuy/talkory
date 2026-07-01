@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Đăng nhập (S01 mobile)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #fff;
+      --color-link: #0075de;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-canvas);
+      color: var(--color-charcoal);
+      min-height: 100dvh;
+      padding: max(16px, env(safe-area-inset-top)) 20px calc(24px + var(--safe-b));
+    }
+    .brand { text-align: center; margin-bottom: 28px; padding-top: 12px; }
+    .brand-mark {
+      width: 48px; height: 48px; margin: 0 auto 12px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+      font-weight: 700; font-size: 22px;
+      display: grid; place-items: center;
+    }
+    .brand h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+    .brand p { font-size: 14px; color: var(--color-slate); line-height: 1.45; }
+    .mascots { display: flex; justify-content: center; gap: 4px; margin-top: 16px; }
+    .mascots img { height: 72px; object-fit: contain; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+    .field input, .field select {
+      width: 100%; font: inherit; font-size: 16px;
+      padding: 12px; border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+    }
+    .btn {
+      width: 100%; font: inherit; font-size: 16px; font-weight: 600;
+      padding: 13px; border: none; border-radius: var(--radius-md);
+      cursor: pointer; margin-bottom: 10px;
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn-google {
+      background: var(--color-canvas); color: var(--color-charcoal);
+      border: 1px solid var(--color-hairline);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-ghost {
+      background: transparent; color: var(--color-slate);
+      font-weight: 500; font-size: 14px; border: none;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 16px 0; font-size: 11px; color: var(--color-muted);
+      text-transform: uppercase;
+    }
+    .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--color-hairline); }
+    .footer { text-align: center; font-size: 14px; color: var(--color-slate); margin-top: 16px; }
+    .footer a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+    .badge {
+      position: fixed; bottom: 12px; right: 12px;
+      font-size: 10px; padding: 4px 8px;
+      background: var(--color-surface); border: 1px solid var(--color-hairline);
+      border-radius: 999px; color: var(--color-slate);
+    }
+  </style>
+</head>
+<body>
+  <header class="brand">
+    <div class="brand-mark">T</div>
+    <h1>Talkory</h1>
+    <p>Học Nhật &amp; Trung theo JLPT / HSK</p>
+    <div class="mascots">
+      <img src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+      <img src="../../assets/mascots/longmi-idle-transparent.png" alt="" />
+    </div>
+  </header>
+
+  <form>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="ban@email.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label for="password">Mật khẩu</label>
+      <input id="password" type="password" placeholder="••••••••" />
+    </div>
+    <div class="field">
+      <label for="locale">Ngôn ngữ</label>
+      <select id="locale"><option>Tiếng Việt</option><option>English</option></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+  </form>
+
+  <div class="divider">hoặc</div>
+  <button type="button" class="btn btn-google">Đăng nhập bằng Google</button>
+  <button type="button" class="btn btn-ghost">Tiếp tục không đăng ký →</button>
+
+  <p class="footer">Chưa có tài khoản? <a href="S01-auth-register.html">Đăng ký</a></p>
+  <div class="badge">S01 · mobile</div>
+</body>
+</html>

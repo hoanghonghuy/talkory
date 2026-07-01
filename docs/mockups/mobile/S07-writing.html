@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Luyện viết (S07 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+      --font-mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      min-height: 100dvh;
+      padding-bottom: var(--safe-b);
+    }
+    .header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+    .exit { text-decoration: none; color: var(--color-slate); font-size: 18px; width: 32px; }
+    .char-title { font-family: var(--font-cjk); font-size: 26px; font-weight: 500; }
+    .char-meta { font-size: 12px; color: var(--color-slate); }
+    .free { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--color-success); background: #c3f0d2; padding: 3px 8px; border-radius: 999px; }
+    main { padding: 16px; }
+    .stroke-box {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); padding: 14px; margin-bottom: 12px;
+    }
+    .stroke-demo {
+      aspect-ratio: 1; max-height: 160px; margin: 0 auto 10px;
+      background: var(--color-surface); border-radius: var(--radius-md);
+      display: grid; place-items: center;
+      font-family: var(--font-cjk); font-size: 80px;
+      position: relative;
+    }
+    .stroke-demo::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(var(--color-hairline) 1px, transparent 1px), linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px);
+      background-size: 33% 33%; opacity: 0.4; pointer-events: none;
+    }
+    .stroke-ctrl { display: flex; gap: 8px; }
+    .stroke-ctrl button {
+      flex: 1; font: inherit; font-size: 13px; padding: 10px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      background: var(--color-canvas);
+    }
+    .stroke-ctrl .go { background: var(--color-primary); color: #fff; border: none; }
+    .canvas {
+      aspect-ratio: 1; background: var(--color-canvas);
+      border: 2px solid var(--color-hairline); border-radius: var(--radius-lg);
+      position: relative; margin-bottom: 12px;
+    }
+    .canvas::after {
+      content: "学"; position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-family: var(--font-cjk); font-size: 120px;
+      color: rgba(187,184,177,0.35); pointer-events: none;
+    }
+    .canvas-hint {
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      font-size: 11px; color: var(--color-slate); background: #fff;
+      padding: 4px 10px; border-radius: 999px; border: 1px solid var(--color-hairline);
+    }
+    .typing label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+    .typing-row { display: flex; gap: 8px; }
+    .typing input {
+      flex: 1; font-family: var(--font-mono); font-size: 16px;
+      padding: 12px; border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+    }
+    .typing button {
+      font: inherit; font-weight: 600; padding: 0 16px;
+      border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+    }
+    .actions { display: flex; gap: 8px; margin-top: 12px; }
+    .actions button {
+      flex: 1; font: inherit; font-size: 13px; padding: 11px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      background: var(--color-canvas);
+    }
+    .mock { position: fixed; bottom: 8px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="S03-dashboard.html" class="exit">✕</a>
+    <div>
+      <div class="char-title">学</div>
+      <div class="char-meta">がく · học · N5</div>
+    </div>
+    <span class="free">Miễn phí</span>
+  </header>
+  <main>
+    <div class="stroke-box">
+      <div class="stroke-demo">学</div>
+      <div class="stroke-ctrl">
+        <button type="button">◀</button>
+        <button type="button" class="go">▶ Phát nét</button>
+        <button type="button">3/8</button>
+      </div>
+    </div>
+    <div class="canvas"><span class="canvas-hint">Chạm để vẽ</span></div>
+    <div class="typing">
+      <label>Luyện gõ romaji</label>
+      <div class="typing-row">
+        <input type="text" value="ga" />
+        <button type="button">OK</button>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button">Xóa</button>
+      <button type="button">Lưu</button>
+    </div>
+  </main>
+  <div class="mock">S07 · mobile</div>
+</body>
+</html>

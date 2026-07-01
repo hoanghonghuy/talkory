@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Bài học (S05 mobile)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-error: #e03131;
+      --color-error-soft: #fde8e8;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100dvh;
+      padding-bottom: var(--safe-b);
+    }
+    .lesson-header {
+      position: sticky; top: 0; z-index: 10;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+    }
+    .toolbar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+    }
+    .exit {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border: none; background: transparent; border-radius: 999px;
+      color: var(--color-slate); text-decoration: none;
+      display: grid; place-items: center;
+    }
+    .title { flex: 1; min-width: 0; }
+    .title strong { display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .title small { font-size: 11px; color: var(--color-slate); }
+    .ai-btn {
+      font: inherit; font-size: 12px; font-weight: 500;
+      padding: 8px 10px; border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md); background: var(--color-canvas);
+      color: var(--color-slate); text-decoration: none; white-space: nowrap;
+    }
+    .progress { height: 3px; background: var(--color-hairline); }
+    .progress i { display: block; height: 100%; width: 45%; background: var(--color-lang-ja-accent); }
+    main { padding: 16px; max-width: 680px; margin: 0 auto; }
+    .block { margin-bottom: 22px; }
+    .block-label { font-size: 10px; font-weight: 600; text-transform: uppercase; color: var(--color-muted); margin-bottom: 8px; }
+    .prose { font-size: 16px; line-height: 1.6; }
+    .prose h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+    .callout {
+      margin-top: 10px; padding: 12px; background: var(--color-surface);
+      border-left: 3px solid var(--color-lang-ja-accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 14px;
+    }
+    .vocab {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .vrow {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 14px; border-bottom: 1px solid var(--color-hairline);
+    }
+    .vrow:last-child { border-bottom: none; }
+    .vterm { font-family: var(--font-cjk); font-size: 20px; font-weight: 500; }
+    .vread { font-size: 12px; color: var(--color-slate); }
+    .vmean { margin-left: auto; font-size: 13px; }
+    .exercise {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); padding: 16px;
+    }
+    .exercise h4 { font-size: 15px; font-weight: 600; margin-bottom: 12px; line-height: 1.4; }
+    .prompt {
+      font-family: var(--font-cjk); font-size: 28px; text-align: center;
+      padding: 14px; background: var(--color-surface); border-radius: var(--radius-md);
+      margin-bottom: 12px;
+    }
+    .opt {
+      width: 100%; font: inherit; font-size: 15px; padding: 13px;
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      background: var(--color-canvas); margin-bottom: 8px; text-align: left;
+    }
+    .opt.bad { border-color: var(--color-error); background: var(--color-error-soft); }
+    .opt.ok { border-color: var(--color-success); background: var(--color-success-soft); }
+    .feedback {
+      font-size: 13px; line-height: 1.5; padding: 12px;
+      background: var(--color-error-soft); border-radius: var(--radius-md);
+      margin: 10px 0;
+    }
+    .btn {
+      width: 100%; font: inherit; font-size: 15px; font-weight: 600;
+      padding: 13px; border: none; border-radius: var(--radius-md);
+      background: var(--color-primary); color: #fff;
+    }
+    .mock { position: fixed; bottom: 8px; right: 8px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <header class="lesson-header">
+    <div class="toolbar">
+      <a href="S04-curriculum.html" class="exit">✕</a>
+      <div class="title">
+        <strong>Bài 3 — Hiragana か</strong>
+        <small>JLPT N5</small>
+      </div>
+      <a href="S08-ai-tutor.html" class="ai-btn">💬 AI</a>
+    </div>
+    <div class="progress"><i></i></div>
+  </header>
+  <main>
+    <section class="block">
+      <p class="block-label">Giải thích</p>
+      <div class="prose">
+        <h3>Hàng か trong Hiragana</h3>
+        <p>か・き・く・け・こ — âm ka, ki, ku, ke, ko.</p>
+        <div class="callout"><strong>Mẹo:</strong> き (ki) có nét giống chữ viết tay.</div>
+      </div>
+    </section>
+    <section class="block">
+      <p class="block-label">Từ vựng</p>
+      <div class="vocab">
+        <div class="vrow"><div><div class="vterm">か</div><div class="vread">ka</div></div><span class="vmean">trợ từ</span></div>
+        <div class="vrow"><div><div class="vterm">き</div><div class="vread">ki</div></div><span class="vmean">cây</span></div>
+        <div class="vrow"><div><div class="vterm">く</div><div class="vread">ku</div></div><span class="vmean">hướng</span></div>
+      </div>
+    </section>
+    <section class="block">
+      <p class="block-label">Luyện tập</p>
+      <div class="exercise">
+        <h4>Chọn Hiragana đúng với âm "ki":</h4>
+        <p class="prompt">き</p>
+        <button type="button" class="opt bad">か</button>
+        <button type="button" class="opt ok">き ✓</button>
+        <button type="button" class="opt">く</button>
+        <div class="feedback"><strong>Chưa đúng.</strong> Đáp án là き (ki).</div>
+        <button type="button" class="btn">Tiếp tục →</button>
+      </div>
+    </section>
+  </main>
+  <div class="mock">S05 · mobile · no bottom nav</div>
+</body>
+</html>

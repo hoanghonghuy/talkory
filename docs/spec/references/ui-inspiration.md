@@ -146,18 +146,18 @@ Talkory **đã chốt** trong DESIGN.md: không Duolingo-style.
 
 | Spec | Tham khảo chính | Ghi chú mockup |
 |---|---|---|
-| **S01 Auth** | Cal.com, Brottin login đơn giản | Centered card, không sidebar; OAuth row |
-| **S02 Placement** | LingoDeer level pick + Migii diagnostic | Focus mode, progress top, Sakko/Longmi theo ngôn ngữ |
-| **S03 Dashboard** | Brottin hub + MongoDB catalog + WaniKani widgets | Sidebar 240px; streak + continue + 2 track cards |
+| **S01 Auth** | Cal.com, Brottin login đơn giản | Centered card, không sidebar; OAuth row | ✅ Desktop login + register |
+| **S02 Placement** | LingoDeer level pick + Migii diagnostic | Focus mode, progress top, Sakko/Longmi theo ngôn ngữ | ✅ Desktop picker + question + result |
+| **S03 Dashboard** | Brottin hub + MongoDB catalog + WaniKani widgets | Sidebar 240px; streak + continue + 2 track cards | ✅ Desktop |
 | **S04 Curriculum** | Mintlify tree + LingoDeer path + MongoDB tags | ✅ Đã có HTML desktop |
-| **S05 Lesson** | Notion blocks + LingoDeer exercises + Migii explanations | Max-width 680px; mistake review footer |
-| **S06 SRS** | Anki reviewer + WaniKani due count | Full focus; 4 rating buttons sticky |
-| **S07 Writing** | Skritter-like grid (concept) + Spotify CJK | Hairline grid, large `font-cjk` |
-| **S08 AI Tutor** | Hanzii AI chat + Notion bubbles | User `primary`, assistant `surface` |
-| **S09 IT Track** | Mintlify code blocks + `lang-it` peach | Mono font snippets |
-| **S10 Rewards** | Brottin badges + LingoDeer weekly rank | Green pill CTA, không league phức tạp |
-| **S11 Settings** | Cal.com forms + LingoDeer Me tab | Theme picker classic/sakura/jade |
-| **S12 Admin** | Notion CMS | Block list + property tags |
+| **S05 Lesson** | Notion blocks + LingoDeer exercises + Migii explanations | Max-width 680px; mistake review footer | ✅ Desktop |
+| **S06 SRS** | Anki reviewer + WaniKani due count | Full focus; 4 rating buttons sticky | ✅ Desktop |
+| **S07 Writing** | Skritter-like grid (concept) + Spotify CJK | Hairline grid, large `font-cjk` | ✅ Desktop |
+| **S08 AI Tutor** | Hanzii AI chat + Notion bubbles | User `primary`, assistant `surface` | ✅ Desktop |
+| **S09 IT Track** | Mintlify code blocks + `lang-it` peach | Mono font snippets | ✅ Desktop |
+| **S10 Rewards** | Brottin badges + LingoDeer weekly rank | Green pill CTA, không league phức tạp | ✅ Desktop |
+| **S11 Settings** | Cal.com forms + LingoDeer Me tab | Theme picker classic/sakura/jade | ✅ Desktop |
+| **S12 Admin** | Notion CMS | Block list + property tags | ✅ Desktop |
 
 ---
 

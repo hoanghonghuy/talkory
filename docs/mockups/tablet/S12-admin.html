@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-tablet-preview="768" />
+  <title>Talkory — Admin CMS (S12 tablet)</title>
+  <!-- Borrow: Notion CMS blocks + property tags | Reject: mascot -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #ffffff;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-warning: #dd5b00;
+      --color-card-yellow: #fef7d6;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --admin-sidebar: 260px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-surface);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .admin-shell { display: flex; min-height: 100vh; }
+
+    .admin-sidebar {
+      position: fixed;
+      width: var(--admin-sidebar);
+      height: 100vh;
+      background: var(--color-charcoal);
+      color: #e8e6e3;
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-brand {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 12px;
+    }
+
+    .admin-brand strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .admin-brand span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .admin-nav { flex: 1; padding: 0 8px; }
+
+    .nav-group {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.35);
+      padding: 12px 12px 6px;
+    }
+
+    .admin-nav a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+
+    .admin-nav a:hover { background: rgba(255,255,255,0.06); color: white; }
+
+    .admin-nav a.active {
+      background: rgba(86, 69, 212, 0.35);
+      color: white;
+      font-weight: 500;
+    }
+
+    .admin-main {
+      margin-left: var(--admin-sidebar);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .admin-topbar {
+      padding: 14px 28px;
+      background: var(--color-canvas);
+      border-bottom: 1px solid var(--color-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--color-slate);
+    }
+
+    .breadcrumb strong { color: var(--color-charcoal); }
+
+    .topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .tag-draft { background: var(--color-card-yellow); color: #92680a; }
+    .tag-published { background: var(--color-success-soft); color: var(--color-success); }
+
+    .btn {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-hairline);
+      background: var(--color-canvas);
+      cursor: pointer;
+      color: var(--color-charcoal);
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+      border-color: transparent;
+    }
+
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .block-editor {
+      padding: 24px 28px;
+      overflow-y: auto;
+      border-right: 1px solid var(--color-hairline);
+      background: var(--color-canvas);
+    }
+
+    .lesson-title-input {
+      font-size: 24px;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      margin-bottom: 8px;
+      font-family: inherit;
+      color: var(--color-charcoal);
+    }
+
+    .lesson-title-input:focus { outline: none; }
+
+    .props-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .prop-pill {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-hairline);
+      color: var(--color-slate);
+    }
+
+    .prop-pill.ja { background: var(--color-lang-ja); color: #7b3ff2; border-color: transparent; }
+
+    .blocks { display: flex; flex-direction: column; gap: 8px; }
+
+    .block-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      transition: border-color 0.12s;
+    }
+
+    .block-row:hover { border-color: var(--color-primary); }
+    .block-row.selected { border-color: var(--color-primary); background: rgba(86,69,212,0.03); }
+
+    .drag-handle {
+      color: var(--color-muted);
+      cursor: grab;
+      padding-top: 2px;
+      font-size: 14px;
+      user-select: none;
+    }
+
+    .block-type {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-muted);
+      min-width: 72px;
+      padding-top: 3px;
+    }
+
+    .block-content { flex: 1; font-size: 14px; line-height: 1.45; min-width: 0; }
+    .block-content .muted { color: var(--color-slate); font-size: 13px; }
+
+    .block-actions button {
+      border: none;
+      background: transparent;
+      color: var(--color-muted);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 14px;
+    }
+
+    .add-block {
+      margin-top: 12px;
+      width: 100%;
+      padding: 10px;
+      border: 1px dashed var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--color-slate);
+      cursor: pointer;
+    }
+
+    .add-block:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .props-panel {
+      padding: 24px 20px;
+      background: var(--color-surface-soft, #fafaf9);
+      overflow-y: auto;
+    }
+
+    .props-panel h3 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .prop-field { margin-bottom: 14px; }
+
+    .prop-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-slate);
+      margin-bottom: 5px;
+    }
+
+    .prop-field select,
+    .prop-field textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 13px;
+      padding: 8px 10px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+    }
+
+    .prop-field textarea { min-height: 100px; resize: vertical; }
+
+    .lang-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .lang-tabs button {
+      font-family: inherit;
+      font-size: 12px;
+      padding: 4px 10px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      cursor: pointer;
+    }
+
+    .lang-tabs button.active {
+      background: var(--color-primary);
+      color: white;
+      border-color: transparent;
+    }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <strong>Talkory Admin</strong>
+        <span>CMS · Phase sau</span>
+      </div>
+      <nav class="admin-nav">
+        <div class="nav-group">Nội dung</div>
+        <a href="#">Curriculum</a>
+        <a href="#" class="active">Lessons</a>
+        <a href="#">IT modules</a>
+        <div class="nav-group">Công cụ</div>
+        <a href="#">Import</a>
+        <a href="#">AI drafts</a>
+        <a href="#" style="opacity:0.5">Users</a>
+      </nav>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <p class="breadcrumb">Lessons / <strong>N5 · Bài 3 — Hiragana か</strong></p>
+        <div class="topbar-actions">
+          <span class="tag tag-draft">Draft</span>
+          <button type="button" class="btn">Xem trước</button>
+          <button type="button" class="btn btn-primary">Publish</button>
+        </div>
+      </header>
+
+      <div class="editor-layout">
+        <div class="block-editor">
+          <input class="lesson-title-input" type="text" value="Bài 3 — Hiragana: hàng か" />
+          <div class="props-row">
+            <span class="prop-pill ja">JA · N5</span>
+            <span class="prop-pill">Unit 1</span>
+            <span class="prop-pill">~15 phút</span>
+            <span class="prop-pill">order: 3</span>
+          </div>
+
+          <div class="blocks">
+            <div class="block-row">
+              <span class="drag-handle">⋮⋮</span>
+              <span class="block-type">text</span>
+              <div class="block-content">
+                <strong>Hàng か trong Hiragana</strong>
+                <p class="muted">Giải thích ngắn về か・き・く・け・こ…</p>
+              </div>
+              <div class="block-actions"><button type="button">⋯</button></div>
+            </div>
+            <div class="block-row">
+              <span class="drag-handle">⋮⋮</span>
+              <span class="block-type">vocab</span>
+              <div class="block-content">
+                <strong>3 từ vựng</strong>
+                <p class="muted">か, き, く — audio + nghĩa VI/EN</p>
+              </div>
+              <div class="block-actions"><button type="button">⋯</button></div>
+            </div>
+            <div class="block-row selected">
+              <span class="drag-handle">⋮⋮</span>
+              <span class="block-type">exercise</span>
+              <div class="block-content">
+                <strong>MCQ — chọn Hiragana "ki"</strong>
+                <p class="muted">4 đáp án · giải thích sau submit</p>
+              </div>
+              <div class="block-actions"><button type="button">⋯</button></div>
+            </div>
+            <div class="block-row" style="opacity:0.55">
+              <span class="drag-handle">⋮⋮</span>
+              <span class="block-type">reading</span>
+              <div class="block-content" style="text-decoration:line-through">
+                <strong>Đoạn đọc ngắn</strong>
+                <p class="muted">Đã xóa mềm — Restore?</p>
+              </div>
+              <div class="block-actions"><button type="button">↩</button></div>
+            </div>
+          </div>
+
+          <button type="button" class="add-block">+ Thêm block</button>
+        </div>
+
+        <aside class="props-panel">
+          <h3>Block: exercise</h3>
+          <div class="lang-tabs">
+            <button type="button" class="active">VI</button>
+            <button type="button">EN</button>
+          </div>
+          <div class="prop-field">
+            <label>Loại exercise</label>
+            <select>
+              <option selected>mcq_single</option>
+              <option>fill_blank</option>
+              <option>match_pairs</option>
+            </select>
+          </div>
+          <div class="prop-field">
+            <label>Câu hỏi (vi)</label>
+            <textarea>Chọn Hiragana đúng với âm đọc "ki":</textarea>
+          </div>
+          <div class="prop-field">
+            <label>Giải thích khi sai</label>
+            <textarea>か = ka, き = ki, く = ku…</textarea>
+          </div>
+          <button type="button" class="btn" style="width:100%;margin-top:8px">Lưu block</button>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup-badge">S12 · Admin lesson editor · Tablet</div>
+</body>
+</html>

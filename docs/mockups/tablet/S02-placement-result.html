@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" data-tablet-preview="768" />
+  <title>Talkory — Kết quả placement (S02 tablet)</title>
+  <!-- Borrow: Migii result + Brottin CTA | Reject: sidebar -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-primary-pressed: #4534b3;
+      --color-on-primary: #ffffff;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #ffffff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-card-mint: #d9f3e1;
+      --color-focus-canvas: #fafaf9;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-elevated: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, "Noto Sans", system-ui, sans-serif;
+      background: var(--color-focus-canvas);
+      color: var(--color-charcoal);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .result-wrap {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+    }
+
+    .mascot-celebrate {
+      height: 120px;
+      width: auto;
+      margin: 0 auto 20px;
+      object-fit: contain;
+    }
+
+    .result-wrap h1 {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .result-wrap .lead {
+      font-size: 15px;
+      color: var(--color-slate);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .level-card {
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-elevated);
+      padding: 28px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .level-card-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .level-badge {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-md);
+      background: var(--color-lang-ja);
+      color: var(--color-lang-ja-accent);
+      font-size: 18px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .level-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .level-card h2 span {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-slate);
+      margin-top: 4px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .score-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .score-item strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-success);
+      margin-bottom: 2px;
+    }
+
+    .score-item span {
+      font-size: 11px;
+      color: var(--color-slate);
+    }
+
+    .level-note {
+      font-size: 13px;
+      color: var(--color-slate);
+      line-height: 1.5;
+      padding: 12px 14px;
+      background: var(--color-success-soft);
+      border-radius: var(--radius-md);
+    }
+
+    .btn-primary {
+      display: block;
+      width: 100%;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .btn-primary:hover { background: var(--color-primary-pressed); }
+
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px;
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      background: var(--color-canvas);
+      color: var(--color-slate);
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-secondary:hover { background: var(--color-surface); }
+
+    .mockup-badge {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: var(--color-slate);
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      padding: 6px 12px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="result-wrap">
+    <img class="mascot-celebrate" src="../../assets/mascots/sakko-idle-transparent.png" alt="" />
+    <h1>Xong rồi! 🎉</h1>
+    <p class="lead">Dựa trên 18 câu trả lời, Talkory gợi ý level phù hợp để bạn bắt đầu.</p>
+
+    <div class="level-card">
+      <div class="level-card-head">
+        <div class="level-badge">N4</div>
+        <h2>
+          JLPT N4 — Sơ trung cấp
+          <span>Đề xuất bắt đầu tại đây</span>
+        </h2>
+      </div>
+      <div class="score-row">
+        <div class="score-item">
+          <strong>72%</strong>
+          <span>Từ vựng</span>
+        </div>
+        <div class="score-item">
+          <strong>65%</strong>
+          <span>Ngữ pháp</span>
+        </div>
+        <div class="score-item">
+          <strong>58%</strong>
+          <span>Kanji</span>
+        </div>
+      </div>
+      <p class="level-note">Bạn nắm khá tốt N5. Một số kanji N4 còn yếu — lộ trình sẽ ôn lại qua SRS sau mỗi bài.</p>
+    </div>
+
+    <a href="S04-curriculum.html" class="btn-primary">Bắt đầu học N4 →</a>
+    <a href="S02-placement-picker.html" class="btn-secondary">Làm placement tiếng Trung</a>
+  </div>
+
+  <div class="mockup-badge">S02 · Placement result · Tablet</div>
+</body>
+</html>
