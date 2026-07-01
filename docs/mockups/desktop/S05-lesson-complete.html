@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Hoàn thành bài (S05)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #fff;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-lang-ja: #e6e0f5;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --shadow-elevated: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-focus-canvas, #fafaf9);
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 24px;
+    }
+    .celebrate {
+      width: 100%; max-width: 440px; text-align: center;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+    .celebrate-top {
+      background: linear-gradient(180deg, var(--color-success-soft) 0%, var(--color-canvas) 70%);
+      padding: 40px 28px 24px;
+    }
+    .celebrate-top img { width: 96px; height: 96px; object-fit: contain; margin-bottom: 16px; }
+    .celebrate-top h1 { font-size: 26px; font-weight: 600; margin-bottom: 8px; }
+    .celebrate-top p { font-size: 15px; color: var(--color-slate); line-height: 1.5; }
+    .xp-bar {
+      margin: 20px 28px;
+      padding: 14px 16px;
+      background: var(--color-lang-ja);
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .xp-bar strong { color: var(--color-success); font-size: 18px; }
+    .actions { padding: 0 28px 28px; display: flex; flex-direction: column; gap: 8px; }
+    .btn {
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      padding: 12px; border-radius: var(--radius-md); border: none;
+      cursor: pointer; text-decoration: none; text-align: center;
+    }
+    .btn-primary { background: var(--color-success-bright); color: #001e2b; }
+    .btn-secondary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn-ghost { background: transparent; color: var(--color-slate); font-weight: 500; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <article class="celebrate">
+    <div class="celebrate-top">
+      <img src="../../assets/mascots/sakko-idle-transparent.png" alt="Sakko" />
+      <h1>Bài học hoàn thành!</h1>
+      <p>Bài 3 — Hiragana: hàng か · +12 thẻ SRS mới</p>
+    </div>
+    <div class="xp-bar">
+      <span>XP nhận được</span>
+      <strong>+45 XP</strong>
+    </div>
+    <div class="actions">
+      <a href="S05-lesson.html" class="btn btn-primary">Bài tiếp theo →</a>
+      <a href="S06-srs-front.html" class="btn btn-secondary">Ôn 12 thẻ mới</a>
+      <a href="S04-curriculum.html" class="btn btn-ghost">Về lộ trình</a>
+    </div>
+  </article>
+  <div class="mockup-badge">S05 · completing · Desktop</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Không có thẻ ôn (S06 empty)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #fff;
+      --color-success: #00a35c;
+      --color-success-bright: #00ed64;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-focus-canvas); color: var(--color-charcoal); min-height: 100vh; display: flex; flex-direction: column; }
+    .review-header { display: flex; align-items: center; padding: 12px 16px; background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
+    .exit-btn { width: 36px; height: 36px; border: none; background: transparent; border-radius: 999px; color: var(--color-slate); display: grid; place-items: center; text-decoration: none; margin-right: 16px; }
+    .review-main { flex: 1; display: grid; place-items: center; padding: 20px 16px; }
+    .empty-card {
+      max-width: 420px; text-align: center;
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl); padding: 48px 32px;
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; }
+    .empty-card h2 { font-size: 22px; font-weight: 600; margin-bottom: 10px; }
+    .empty-card p { font-size: 15px; color: var(--color-slate); line-height: 1.55; margin-bottom: 24px; }
+    .btn { font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: var(--radius-md); border: none; cursor: pointer; text-decoration: none; display: inline-block; margin: 0 6px; }
+    .btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn-secondary { background: var(--color-success-bright); color: #001e2b; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header class="review-header">
+    <a href="S03-dashboard.html" class="exit-btn">✕</a>
+    <span style="font-size:15px;font-weight:600">Ôn tập SRS</span>
+  </header>
+  <main class="review-main">
+    <article class="empty-card">
+      <div class="empty-icon">✨</div>
+      <h2>Không có thẻ cần ôn</h2>
+      <p>Bạn đã ôn hết thẻ đến hạn. Học bài mới để tạo thêm flashcard, hoặc quay lại sau.</p>
+      <a href="S04-curriculum.html" class="btn btn-primary">Học bài mới</a>
+      <a href="S03-dashboard.html" class="btn btn-secondary">Về trang chủ</a>
+    </article>
+  </main>
+  <div class="mockup-badge">S06 · empty · Mobile</div>
+</body>
+</html>

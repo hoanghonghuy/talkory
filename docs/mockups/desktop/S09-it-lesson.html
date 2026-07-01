@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — IT Lesson (S09)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-lang-it: #ffe8d4;
+      --color-lang-it-accent: #dd5b00;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-focus-canvas: #fafaf9;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-focus-canvas); color: var(--color-charcoal); min-height: 100vh; }
+    .lesson-header { background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
+    .toolbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; gap: 16px; }
+    .toolbar-left { display: flex; align-items: center; gap: 12px; }
+    .exit-btn { width: 36px; height: 36px; border: none; background: transparent; border-radius: 999px; color: var(--color-slate); display: grid; place-items: center; text-decoration: none; }
+    .lesson-title { font-size: 14px; font-weight: 600; }
+    .lesson-title small { display: block; font-size: 12px; font-weight: 400; color: var(--color-lang-it-accent); }
+    .it-badge { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--color-lang-it); color: var(--color-lang-it-accent); }
+    .progress-strip { height: 3px; background: var(--color-hairline); }
+    .progress-strip i { display: block; height: 100%; width: 55%; background: var(--color-lang-it-accent); }
+    .lesson-body { max-width: 680px; margin: 0 auto; padding: 32px 24px 64px; }
+    .block { margin-bottom: 28px; }
+    .block-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-slate); margin-bottom: 10px; }
+    .prose { font-size: 16px; line-height: 1.55; }
+    .prose h3 { font-size: 18px; margin-bottom: 10px; }
+    .code-block {
+      margin-top: 14px; background: #1e1e1e; border-radius: var(--radius-lg);
+      padding: 16px 18px; font-family: var(--font-mono); font-size: 13px;
+      color: #d4d4d4; line-height: 1.6; overflow-x: auto;
+    }
+    .code-block .comment { color: #6a9955; }
+    .code-block .string { color: #ce9178; }
+    .vocab-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; background: var(--color-canvas);
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      margin-bottom: 6px;
+    }
+    .vocab-term { font-family: var(--font-cjk); font-size: 18px; font-weight: 500; }
+    .vocab-meaning { margin-left: auto; font-size: 14px; color: var(--color-slate); }
+    .lang-pill { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 4px; background: var(--color-surface); }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header class="lesson-header">
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <a href="S09-it-module.html" class="exit-btn">✕</a>
+        <div class="lesson-title">
+          Deploy &amp; CI/CD
+          <small>IT Track · Dev Vocabulary · Bài 3</small>
+        </div>
+      </div>
+      <span class="it-badge">IT</span>
+    </div>
+    <div class="progress-strip"><i></i></div>
+  </header>
+  <main class="lesson-body">
+    <section class="block">
+      <p class="block-label">Giải thích</p>
+      <div class="prose">
+        <h3>デプロイ (deploy) trong team Nhật</h3>
+        <p>Khi deploy xong, dev thường báo trên Slack: 「デプロイが完了しました」. Biết cụm này giúp bạn theo dõi release mà không cần dịch từng tin.</p>
+        <pre class="code-block"><span class="comment">// Ví dụ log CI</span>
+<span class="string">"デプロイが完了しました"</span>  <span class="comment">// Deploy hoàn tất</span>
+<span class="string">"ビルドに失敗しました"</span>    <span class="comment">// Build thất bại</span></pre>
+      </div>
+    </section>
+    <section class="block">
+      <p class="block-label">Từ vựng</p>
+      <div class="vocab-row">
+        <span class="lang-pill">JA</span>
+        <span class="vocab-term">デプロイ</span>
+        <span class="vocab-meaning">deploy (triển khai)</span>
+      </div>
+      <div class="vocab-row">
+        <span class="lang-pill">JA</span>
+        <span class="vocab-term">完了</span>
+        <span class="vocab-meaning">hoàn tất</span>
+      </div>
+      <div class="vocab-row">
+        <span class="lang-pill">EN</span>
+        <span class="vocab-term" style="font-family:var(--font-mono);font-size:15px">pipeline</span>
+        <span class="vocab-meaning">chuỗi CI/CD</span>
+      </div>
+    </section>
+  </main>
+  <div class="mockup-badge">S09 · /it/lesson/:id · Desktop</div>
+</body>
+</html>

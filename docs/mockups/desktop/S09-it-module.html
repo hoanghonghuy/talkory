@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Dev Vocabulary (S09 module)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-it: #ffe8d4;
+      --color-lang-it-accent: #dd5b00;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --sidebar-w: 240px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
+    .shell { display: flex; min-height: 100vh; }
+    .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-w); height: 100vh; background: var(--color-surface); border-right: 1px solid var(--color-hairline); padding: 24px 0; }
+    .brand-mark { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--color-lang-it-accent); color: #fff; font-weight: 700; display: grid; place-items: center; margin: 0 20px 20px; }
+    .main-wrap { margin-left: var(--sidebar-w); flex: 1; padding: 32px; max-width: 800px; }
+    .back { font-size: 14px; color: var(--color-slate); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; }
+    .back:hover { color: var(--color-lang-it-accent); }
+    .module-head { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+    .module-icon { width: 56px; height: 56px; border-radius: var(--radius-lg); background: var(--color-lang-it); display: grid; place-items: center; font-size: 28px; flex-shrink: 0; }
+    .module-head h1 { font-size: 26px; font-weight: 600; margin-bottom: 6px; }
+    .module-head p { font-size: 14px; color: var(--color-slate); line-height: 1.5; }
+    .lang-tags { display: flex; gap: 6px; margin-top: 8px; }
+    .lang-tag { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--color-surface); border: 1px solid var(--color-hairline); color: var(--color-slate); }
+    .lesson-list { display: flex; flex-direction: column; gap: 8px; }
+    .lesson-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px; background: var(--color-canvas);
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
+      text-decoration: none; color: inherit;
+      transition: border-color 0.15s;
+    }
+    .lesson-row:hover { border-color: var(--color-lang-it-accent); }
+    .lesson-row.next { border-color: rgba(221,91,0,0.35); background: rgba(255,232,212,0.3); }
+    .lesson-num { width: 32px; height: 32px; border-radius: var(--radius-md); background: var(--color-surface); display: grid; place-items: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+    .lesson-body { flex: 1; }
+    .lesson-body strong { display: block; font-size: 15px; margin-bottom: 2px; }
+    .lesson-body small { font-size: 12px; color: var(--color-slate); }
+    .check { width: 22px; height: 22px; border-radius: 999px; background: var(--color-success-soft); color: var(--color-success); display: grid; place-items: center; font-size: 12px; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar"><div class="brand-mark">#</div></aside>
+    <div class="main-wrap">
+      <a href="S09-it-track.html" class="back">← IT Track</a>
+      <div class="module-head">
+        <div class="module-icon">💻</div>
+        <div>
+          <h1>Dev Vocabulary</h1>
+          <p>API, bug, deploy, repository — từ vựng hàng ngày trong team dev Nhật.</p>
+          <div class="lang-tags"><span class="lang-tag">JA</span><span class="lang-tag">EN</span></div>
+        </div>
+      </div>
+      <div class="lesson-list">
+        <a href="S09-it-lesson.html" class="lesson-row next">
+          <span class="lesson-num">3</span>
+          <div class="lesson-body"><strong>Deploy &amp; CI/CD</strong><small>12 phút · JA + EN</small></div>
+          <span style="font-size:11px;font-weight:600;color:var(--color-lang-it-accent)">Tiếp theo</span>
+        </a>
+        <div class="lesson-row" style="opacity:0.85">
+          <span class="lesson-num">2</span>
+          <div class="lesson-body"><strong>Bug report &amp; fix</strong><small>10 phút · Đã hoàn thành</small></div>
+          <span class="check">✓</span>
+        </div>
+        <div class="lesson-row" style="opacity:0.85">
+          <span class="lesson-num">1</span>
+          <div class="lesson-body"><strong>API cơ bản</strong><small>8 phút · Đã hoàn thành</small></div>
+          <span class="check">✓</span>
+        </div>
+        <div class="lesson-row" style="opacity:0.5">
+          <span class="lesson-num">4</span>
+          <div class="lesson-body"><strong>Code review</strong><small>Mở sau bài 3</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-badge">S09 · /it/dev-vocabulary · Desktop</div>
+</body>
+</html>

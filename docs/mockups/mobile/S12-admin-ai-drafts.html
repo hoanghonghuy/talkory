@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory Admin — AI drafts (S12)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-error: #e03131;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-card-yellow: #fef7d6;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --admin-sidebar: 260px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
+    .admin-sidebar { position: fixed; width: var(--admin-sidebar); height: 100vh; background: var(--color-charcoal); padding: 20px 0; }
+    .admin-brand { padding: 0 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 12px; }
+    .admin-brand strong { display: block; font-size: 14px; color: #fff; }
+    .admin-nav a { display: block; padding: 8px 20px; font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: none; }
+    .admin-nav a.active { background: rgba(86,69,212,0.35); color: #fff; }
+    .admin-main { margin-left: var(--admin-sidebar); }
+    .admin-topbar { padding: 14px 28px; background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
+    .admin-topbar h1 { font-size: 18px; font-weight: 600; }
+    .content { padding: 24px 28px; }
+    .draft-card {
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); padding: 18px 20px; margin-bottom: 12px;
+    }
+    .draft-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .draft-head h3 { font-size: 15px; font-weight: 600; }
+    .draft-head span { font-size: 12px; color: var(--color-slate); }
+    .badge-ai { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--color-card-yellow); color: #92680a; }
+    .preview { font-size: 14px; color: var(--color-slate); line-height: 1.5; margin-bottom: 14px; }
+    .actions { display: flex; gap: 8px; }
+    .btn { font-family: inherit; font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: var(--radius-md); border: 1px solid var(--color-hairline); background: var(--color-canvas); cursor: pointer; }
+    .btn-approve { background: var(--color-success-soft); color: var(--color-success); border-color: transparent; }
+    .btn-reject { color: var(--color-error); border-color: rgba(224,49,49,0.3); }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><strong>Talkory Admin</strong></div>
+    <nav class="admin-nav">
+      <a href="S12-admin-curriculum.html">Curriculum</a>
+      <a href="S12-admin.html">Lessons</a>
+      <a href="S12-admin-it.html">IT modules</a>
+      <a href="S12-admin-import.html">Import</a>
+      <a href="S12-admin-ai-drafts.html" class="active">AI drafts</a>
+    </nav>
+  </aside>
+  <div class="admin-main">
+    <header class="admin-topbar"><h1>Duyệt nội dung AI · 3 chờ duyệt</h1></header>
+    <div class="content">
+      <article class="draft-card">
+        <div class="draft-head">
+          <div><h3>Block giải thích — Bài 4 N5</h3><span>Gợi ý từ AI · 30/06/2026</span></div>
+          <span class="badge-ai">AI draft</span>
+        </div>
+        <p class="preview">「は」 là trợ từ đánh dấu chủ ngữ. Ví dụ: わたし<strong>は</strong>学生です — Tôi là sinh viên…</p>
+        <div class="actions">
+          <button type="button" class="btn btn-approve">Duyệt → vào editor</button>
+          <button type="button" class="btn btn-reject">Từ chối</button>
+          <button type="button" class="btn">Sửa trước khi duyệt</button>
+        </div>
+      </article>
+      <article class="draft-card">
+        <div class="draft-head">
+          <div><h3>Exercise MCQ — HSK1 Bài 2</h3><span>Gợi ý từ AI</span></div>
+          <span class="badge-ai">AI draft</span>
+        </div>
+        <p class="preview">Chọn pinyin đúng cho 「你好」: nǐ hǎo / ní hāo / nī hào…</p>
+        <div class="actions">
+          <button type="button" class="btn btn-approve">Duyệt</button>
+          <button type="button" class="btn btn-reject">Từ chối</button>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="mockup-badge">S12 · /admin/ai-drafts · Mobile</div>
+</body>
+</html>

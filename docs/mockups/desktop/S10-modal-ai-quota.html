@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Hết lượt AI (S10 modal)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #fff;
+      --color-success-bright: #00ed64;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-card-yellow: #fef7d6;
+      --shadow-elevated: 0 8px 32px rgba(0,0,0,0.12);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      min-height: 100vh;
+      background: var(--color-surface);
+      -webkit-font-smoothing: antialiased;
+    }
+    .backdrop {
+      min-height: 100vh;
+      background: rgba(55, 53, 47, 0.45);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+    .backdrop-hint {
+      position: fixed; top: 16px; left: 16px;
+      font-size: 11px; color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.35);
+      padding: 6px 10px; border-radius: 999px;
+    }
+    .modal {
+      width: 100%; max-width: 420px;
+      background: var(--color-canvas);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-elevated);
+      overflow: hidden;
+    }
+    .modal-header {
+      padding: 24px 24px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--color-hairline);
+    }
+    .quota-ring {
+      width: 72px; height: 72px;
+      margin: 0 auto 14px;
+      border-radius: 999px;
+      border: 4px solid var(--color-hairline);
+      display: grid; place-items: center;
+      font-size: 22px; font-weight: 700;
+      color: var(--color-slate);
+    }
+    .modal-header h2 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+    .modal-header p { font-size: 14px; color: var(--color-slate); line-height: 1.5; }
+    .modal-body { padding: 20px 24px; }
+    .reward-box {
+      background: var(--color-card-yellow);
+      border: 1px solid #f0e4b8;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      text-align: center;
+    }
+    .reward-box h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .reward-box p { font-size: 13px; color: var(--color-slate); margin-bottom: 14px; line-height: 1.45; }
+    .reset-note {
+      font-size: 12px;
+      color: var(--color-slate);
+      text-align: center;
+      margin-top: 14px;
+    }
+    .modal-footer {
+      padding: 0 24px 24px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .btn {
+      font-family: inherit; font-size: 15px; font-weight: 600;
+      padding: 12px; border-radius: var(--radius-md);
+      border: none; cursor: pointer; width: 100%;
+    }
+    .btn-primary { background: var(--color-success-bright); color: #001e2b; }
+    .btn-secondary { background: var(--color-primary); color: var(--color-on-primary); }
+    .btn-ghost { background: transparent; color: var(--color-slate); font-weight: 500; font-size: 14px; }
+    .mockup-badge {
+      position: fixed; bottom: 16px; right: 16px;
+      font-size: 11px; color: var(--color-slate);
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      padding: 6px 12px; border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+  <p class="backdrop-hint">Nền mờ = S08 AI tutor (gửi tin nhắn thứ 6)</p>
+  <div class="backdrop" role="dialog" aria-modal="true">
+    <article class="modal">
+      <header class="modal-header">
+        <div class="quota-ring">0/5</div>
+        <h2>Hết lượt AI hôm nay</h2>
+        <p>Bạn đã dùng 5 lượt hỏi đáp miễn phí. Lượt mới vào 00:00 (GMT+7).</p>
+      </header>
+      <div class="modal-body">
+        <div class="reward-box">
+          <h3>🎬 +5 lượt từ video thưởng</h3>
+          <p>Xem video ngắn để tiếp tục hỏi Sakko / Longmi ngay.</p>
+          <button type="button" class="btn btn-primary">Xem video (+5 lượt)</button>
+        </div>
+        <p class="reset-note">Hoặc đăng ký Premium để không giới hạn lượt AI.</p>
+      </div>
+      <footer class="modal-footer">
+        <a href="S10-rewards.html" class="btn btn-secondary" style="text-align:center;text-decoration:none;display:block;line-height:1.2;padding-top:12px">Nâng cấp Premium</a>
+        <button type="button" class="btn btn-ghost">Quay lại bài học</button>
+      </footer>
+    </article>
+  </div>
+  <div class="mockup-badge">S10 · Modal AIQuotaExhausted · Desktop · trigger S08</div>
+</body>
+</html>

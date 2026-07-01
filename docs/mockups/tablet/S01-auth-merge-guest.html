@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Gộp tiến độ guest (S01)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #fff;
+      --color-success: #00a35c;
+      --color-success-soft: #c3f0d2;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--color-surface);
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%; max-width: 440px;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-elevated);
+      padding: 36px 32px;
+      text-align: center;
+    }
+    .card h1 { font-size: 24px; font-weight: 600; margin-bottom: 10px; }
+    .card > p { font-size: 15px; color: var(--color-slate); line-height: 1.55; margin-bottom: 24px; }
+    .merge-list {
+      text-align: left;
+      background: var(--color-success-soft);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      list-style: none;
+    }
+    .merge-list li {
+      font-size: 14px;
+      padding: 6px 0 6px 22px;
+      position: relative;
+      color: var(--color-charcoal);
+    }
+    .merge-list li::before {
+      content: "✓"; position: absolute; left: 0;
+      color: var(--color-success); font-weight: 700;
+    }
+    .btn {
+      width: 100%; font-family: inherit; font-size: 15px; font-weight: 600;
+      padding: 12px; border-radius: var(--radius-md); border: none; cursor: pointer;
+    }
+    .btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <article class="card">
+    <h1>Gộp tiến độ khách</h1>
+    <p>Chúng tôi tìm thấy tiến độ học trên thiết bị này. Bạn muốn gộp vào tài khoản mới?</p>
+    <ul class="merge-list">
+      <li>2 bài N5 đã hoàn thành</li>
+      <li>8 thẻ SRS</li>
+      <li>Kết quả placement: JLPT N5</li>
+      <li>Streak 1 ngày</li>
+    </ul>
+    <button type="button" class="btn btn-primary">Gộp và tiếp tục học</button>
+  </article>
+  <div class="mockup-badge">S01 · merge guest · Tablet · sau đăng ký</div>
+</body>
+</html>

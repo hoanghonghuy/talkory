@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Ôn SRS mặt trước (S06)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-success: #00a35c;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-focus-canvas: #fafaf9;
+      --shadow-elevated: 0 4px 12px rgba(0,0,0,0.08);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-focus-canvas); color: var(--color-charcoal); min-height: 100vh; display: flex; flex-direction: column; }
+    .review-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-canvas); border-bottom: 1px solid var(--color-hairline); }
+    .review-header-left { display: flex; align-items: center; gap: 16px; }
+    .exit-btn { width: 36px; height: 36px; border: none; background: transparent; border-radius: 999px; cursor: pointer; color: var(--color-slate); display: grid; place-items: center; text-decoration: none; }
+    .due-count { font-size: 15px; font-weight: 600; }
+    .due-count span { color: var(--color-success); }
+    .deck-filter { font-size: 13px; color: var(--color-slate); padding: 6px 12px; border: 1px solid var(--color-hairline); border-radius: var(--radius-md); background: var(--color-canvas); }
+    .review-main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px 16px 24px; }
+    .flashcard {
+      width: 100%; max-width: 100%; min-height: 300px;
+      background: var(--color-canvas); border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-elevated);
+      padding: 48px 32px; text-align: center; cursor: pointer;
+    }
+    .card-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-muted); margin-bottom: 32px; }
+    .card-front { font-family: var(--font-cjk); font-size: 80px; font-weight: 500; line-height: 1.1; margin-bottom: 20px; }
+    .card-hint { font-size: 14px; color: var(--color-muted); }
+    .flip-note { margin-top: 24px; font-size: 13px; color: var(--color-muted); }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <header class="review-header">
+    <div class="review-header-left">
+      <a href="S03-dashboard.html" class="exit-btn" aria-label="Thoát">✕</a>
+      <p class="due-count">Còn <span>24</span> thẻ · Thẻ 5/24</p>
+    </div>
+    <a href="S06-review-settings.html" class="deck-filter" style="text-decoration:none;color:inherit">Deck: Tất cả ▾</a>
+  </header>
+  <main class="review-main">
+    <article class="flashcard" aria-label="Flashcard — mặt trước">
+      <p class="card-type">Kanji · JLPT N5</p>
+      <p class="card-front">勉強</p>
+      <p class="card-hint">Nhấn Space hoặc click để lật thẻ</p>
+    </article>
+    <p class="flip-note">Nhớ nghĩa và cách đọc trước khi lật.</p>
+  </main>
+  <div class="mockup-badge">S06 · front · Mobile · <a href="S06-srs.html" style="color:inherit">→ back</a></div>
+</body>
+</html>

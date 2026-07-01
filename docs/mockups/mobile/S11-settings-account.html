@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory — Tài khoản (S11)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-on-primary: #fff;
+      --color-error: #e03131;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --sidebar-w: 240px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
+    .shell { display: flex; min-height: 100vh; }
+    .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-w); height: 100vh; background: var(--color-surface); border-right: 1px solid var(--color-hairline); padding: 24px 0; }
+    .sidebar { display: none; }
+    .nav a { display: block; padding: 10px 20px; font-size: 14px; color: var(--color-slate); text-decoration: none; }
+    .nav a.active { color: var(--color-primary); font-weight: 600; }
+    .main-wrap { margin-left: 0; flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .back { font-size: 14px; color: var(--color-slate); text-decoration: none; margin-bottom: 20px; display: inline-block; }
+    h2 { font-size: 24px; font-weight: 600; margin-bottom: 24px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--color-slate); }
+    .field input {
+      width: 100%; font-family: inherit; font-size: 15px;
+      padding: 10px 12px; border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md); background: var(--color-canvas);
+    }
+    .oauth-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: var(--color-canvas);
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+    }
+    .oauth-row strong { font-size: 14px; }
+    .oauth-row span { font-size: 13px; color: var(--color-slate); }
+    .btn-link { font-size: 13px; font-weight: 600; color: var(--color-primary); background: none; border: none; cursor: pointer; }
+    .btn-save {
+      width: 100%; font-family: inherit; font-size: 15px; font-weight: 600;
+      padding: 12px; background: var(--color-primary); color: var(--color-on-primary);
+      border: none; border-radius: var(--radius-md); cursor: pointer; margin-top: 8px;
+    }
+    .danger-zone {
+      margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-hairline);
+    }
+    .danger-zone h3 { font-size: 14px; font-weight: 600; color: var(--color-error); margin-bottom: 8px; }
+    .btn-danger { font-family: inherit; font-size: 14px; padding: 10px 16px; border: 1px solid var(--color-error); color: var(--color-error); background: transparent; border-radius: var(--radius-md); cursor: pointer; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  
+    :root { --safe-b: env(safe-area-inset-bottom, 0px); --nav-h: 64px; }
+    body { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 8px); }
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: var(--color-canvas); border-top: 1px solid var(--color-hairline);
+      padding: 6px 4px calc(6px + var(--safe-b));
+      display: grid; grid-template-columns: repeat(5, 1fr);
+    }
+    .bottom-nav a {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-size: 10px; color: var(--color-slate); text-decoration: none; padding: 4px 0;
+    }
+    .bottom-nav a.active { color: var(--color-primary); font-weight: 600; }
+    .bottom-nav svg { width: 22px; height: 22px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <nav class="nav">
+        <a href="S11-settings.html">← Cài đặt</a>
+        <a href="S11-settings-account.html" class="active">Tài khoản</a>
+      </nav>
+    </aside>
+    <div class="main-wrap">
+      <a href="S11-settings.html" class="back">← Cài đặt</a>
+      <h2>Tài khoản</h2>
+      <div class="oauth-row">
+        <div><strong>Google</strong><br><span>minh.nguyen@gmail.com · Đã liên kết</span></div>
+        <button type="button" class="btn-link">Ngắt liên kết</button>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" value="minh.nguyen@gmail.com" readonly />
+      </div>
+      <div class="field">
+        <label for="display">Tên hiển thị</label>
+        <input id="display" type="text" value="Minh" />
+      </div>
+      <button type="button" class="btn-save">Lưu thay đổi</button>
+      <div class="danger-zone">
+        <h3>Vùng nguy hiểm</h3>
+        <button type="button" class="btn-danger">Xóa tài khoản</button>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-badge">S11 · /settings/account · Mobile</div>
+
+    <nav class="bottom-nav" aria-label="Điều hướng">
+      <a href="S03-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>Trang chủ</a>
+      <a href="S04-curriculum.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Học</a>
+      <a href="S06-srs.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Ôn</a>
+      <a href="S09-it-track.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>IT</a>
+      <a href="S11-settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>Cài đặt</a>
+    </nav>
+</body>
+</html>

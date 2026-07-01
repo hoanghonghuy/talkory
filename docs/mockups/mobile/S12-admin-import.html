@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Talkory Admin — Import (S12)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-success: #00a35c;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --admin-sidebar: 260px;
+      --font-mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
+    .admin-sidebar { position: fixed; width: var(--admin-sidebar); height: 100vh; background: var(--color-charcoal); color: #e8e6e3; padding: 20px 0; }
+    .admin-brand { padding: 0 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 12px; }
+    .admin-brand strong { display: block; font-size: 14px; color: #fff; }
+    .admin-nav a { display: block; padding: 8px 20px; font-size: 13px; color: rgba(255,255,255,0.7); text-decoration: none; }
+    .admin-nav a.active { background: rgba(86,69,212,0.35); color: #fff; }
+    .admin-main { margin-left: var(--admin-sidebar); padding: 28px; max-width: 720px; }
+    h1 { font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+    .upload-zone {
+      border: 2px dashed var(--color-hairline); border-radius: var(--radius-lg);
+      padding: 40px; text-align: center; background: var(--color-canvas); margin-bottom: 24px;
+    }
+    .upload-zone p { font-size: 14px; color: var(--color-slate); margin-bottom: 12px; }
+    .btn { font-family: inherit; font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: var(--radius-md); border: none; cursor: pointer; background: var(--color-primary); color: #fff; }
+    .jobs h2 { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--color-slate); }
+    .job {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; background: var(--color-canvas);
+      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
+      margin-bottom: 8px; font-size: 14px;
+    }
+    .job-status { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--color-success); }
+    .job-status.running { color: var(--color-primary); }
+    .progress { flex: 1; max-width: 120px; height: 4px; background: var(--color-hairline); border-radius: 999px; overflow: hidden; }
+    .progress i { display: block; height: 100%; background: var(--color-primary); width: 65%; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; color: var(--color-slate); }
+  </style>
+</head>
+<body>
+  <aside class="admin-sidebar">
+    <div class="admin-brand"><strong>Talkory Admin</strong></div>
+    <nav class="admin-nav">
+      <a href="S12-admin-curriculum.html">Curriculum</a>
+      <a href="S12-admin.html">Lessons</a>
+      <a href="S12-admin-it.html">IT modules</a>
+      <a href="S12-admin-import.html" class="active">Import</a>
+      <a href="S12-admin-ai-drafts.html">AI drafts</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <h1>Import jobs</h1>
+    <div class="upload-zone">
+      <p>Kéo thả file JSON/CSV curriculum hoặc JMdict chunk</p>
+      <button type="button" class="btn">Chọn file</button>
+    </div>
+    <div class="jobs">
+      <h2>Lịch sử import</h2>
+      <div class="job">
+        <span>n5-lessons-v2.json</span>
+        <div class="progress"><i></i></div>
+        <span class="job-status running">Đang map… 65%</span>
+      </div>
+      <div class="job">
+        <span>jmdict-core.zip</span>
+        <span class="job-status">Hoàn thành · 12.420 entries</span>
+      </div>
+    </div>
+  </main>
+  <div class="mockup-badge">S12 · /admin/import · Mobile</div>
+</body>
+</html>

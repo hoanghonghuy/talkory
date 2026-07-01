@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talkory — Chọn ký tự (S07 grid)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-primary: #5645d4;
+      --color-canvas: #fff;
+      --color-surface: #f6f5f4;
+      --color-hairline: #e5e3df;
+      --color-charcoal: #37352f;
+      --color-slate: #5d5b54;
+      --color-muted: #bbb8b1;
+      --color-lang-ja: #e6e0f5;
+      --color-lang-ja-accent: #7b3ff2;
+      --color-lang-zh: #dcecfa;
+      --color-lang-zh-accent: #2a9d99;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --sidebar-w: 200px;
+      --font-cjk: Inter, "Hiragino Sans", "Noto Sans JP", "Noto Sans SC", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
+    .shell { display: flex; min-height: 100vh; }
+    .sidebar {
+      position: fixed; left: 0; top: 0; width: var(--sidebar-w); height: 100vh;
+      background: var(--color-surface); border-right: 1px solid var(--color-hairline); padding: 24px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; padding: 0 20px 28px; }
+    .brand-mark { width: 36px; height: 36px; border-radius: var(--radius-md); background: var(--color-primary); color: #fff; font-weight: 700; display: grid; place-items: center; }
+    .brand h1 { font-size: 16px; font-weight: 600; color: var(--color-primary); }
+    .brand p { font-size: 12px; color: var(--color-slate); }
+    .nav { padding: 0 8px; }
+    .nav a { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius-md); text-decoration: none; font-size: 14px; color: var(--color-slate); }
+    .nav a.active { background: rgba(86,69,212,0.08); color: var(--color-primary); font-weight: 600; box-shadow: inset 3px 0 0 var(--color-primary); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    .main-wrap { margin-left: var(--sidebar-w); flex: 1; padding: 32px; max-width: 1120px; }
+    h2 { font-size: 28px; font-weight: 600; margin-bottom: 6px; }
+    .sub { font-size: 15px; color: var(--color-slate); margin-bottom: 24px; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .filter-btn {
+      font-family: inherit; font-size: 13px; font-weight: 500; padding: 8px 14px;
+      border: 1px solid var(--color-hairline); border-radius: 999px; background: var(--color-canvas); cursor: pointer; color: var(--color-slate);
+    }
+    .filter-btn.active { background: var(--color-lang-ja); color: var(--color-lang-ja-accent); border-color: transparent; font-weight: 600; }
+    .filter-btn.zh.active { background: var(--color-lang-zh); color: var(--color-lang-zh-accent); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+      gap: 10px;
+    }
+    .char-cell {
+      aspect-ratio: 1;
+      background: var(--color-canvas);
+      border: 1px solid var(--color-hairline);
+      border-radius: var(--radius-md);
+      display: grid; place-items: center;
+      font-family: var(--font-cjk);
+      font-size: 32px;
+      text-decoration: none;
+      color: var(--color-charcoal);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .char-cell:hover { border-color: var(--color-primary); box-shadow: var(--shadow-card); }
+    .char-cell.done { background: rgba(0,237,100,0.08); border-color: #c3f0d2; }
+    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-muted); margin: 20px 0 10px; }
+    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">T</div><div><h1>Talkory</h1><p>Luyện viết</p></div></div>
+      <nav class="nav">
+        <a href="S03-dashboard.html">Trang chủ</a>
+        <a href="S04-curriculum.html">Học</a>
+        <a href="S07-writing-grid.html" class="active">Luyện viết</a>
+      </nav>
+    </aside>
+    <div class="main-wrap">
+      <h2>Luyện viết</h2>
+      <p class="sub">Chọn kanji hoặc hanzi theo level — luôn miễn phí</p>
+      <div class="filters">
+        <button type="button" class="filter-btn active">JLPT N5</button>
+        <button type="button" class="filter-btn">N4</button>
+        <button type="button" class="filter-btn zh">HSK1</button>
+        <button type="button" class="filter-btn zh">HSK2</button>
+      </div>
+      <p class="section-label">Kanji N5 — đã học trong bài</p>
+      <div class="grid">
+        <a href="S07-writing.html" class="char-cell done">学</a>
+        <a href="S07-writing.html" class="char-cell done">生</a>
+        <a href="S07-writing.html" class="char-cell">日</a>
+        <a href="S07-writing.html" class="char-cell">本</a>
+        <a href="S07-writing.html" class="char-cell">語</a>
+        <a href="S07-writing.html" class="char-cell">勉</a>
+        <a href="S07-writing.html" class="char-cell">強</a>
+        <a href="S07-writing.html" class="char-cell">食</a>
+      </div>
+      <p class="section-label">Hiragana (luyện nét)</p>
+      <div class="grid">
+        <a href="S07-writing.html" class="char-cell" style="font-size:28px">あ</a>
+        <a href="S07-writing.html" class="char-cell" style="font-size:28px">い</a>
+        <a href="S07-writing.html" class="char-cell" style="font-size:28px">う</a>
+        <a href="S07-writing.html" class="char-cell" style="font-size:28px">か</a>
+      </div>
+    </div>
+  </div>
+  <div class="mockup-badge">S07 · /writing grid · Tablet</div>
+</body>
+</html>
