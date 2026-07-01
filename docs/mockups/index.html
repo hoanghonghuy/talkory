@@ -29,11 +29,23 @@
     }
     .hub a:hover { border-color: var(--c-primary); }
     .hub a span { display: block; font-size: 12px; font-weight: 400; color: var(--c-slate); margin-top: 6px; }
+    .notice {
+      background: #fff8e6; border: 1px solid #f0d78c; border-radius: 10px;
+      padding: 14px 16px; margin-bottom: 24px; font-size: 14px; line-height: 1.55; color: var(--c-ink);
+    }
+    .notice strong { color: #9a6700; }
+    .notice code { font-size: 13px; }
   </style>
 </head>
 <body>
   <h1>Talkory Mockups</h1>
   <p class="lead">HTML tham chiếu UI — bám <code>DESIGN.md</code>. <strong>36 màn</strong> (15 core + 21 bổ sung) × 3 device. Chọn thiết bị rồi mở từng màn.</p>
+
+  <div class="notice" role="note">
+    <strong>Chỉ tham khảo — không phải bản build chính.</strong>
+    Các file HTML này là sketch trực quan (flow, layout, copy). Khi code app, bám <code>docs/spec/screens/</code> + <code>DESIGN.md</code>.
+    Mockup có thể lệch CSS/layout giữa các màn; chỉnh dần khi implement từng screen — không cần polish hết trước.
+  </div>
 
   <div class="hub">
     <a href="desktop/S03-dashboard.html">Desktop<span>≥1024px · sidebar 240px</span></a>

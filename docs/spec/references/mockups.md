@@ -4,6 +4,19 @@
 > **Tham khảo UI/UX:** [ui-inspiration.md](./ui-inspiration.md).  
 > **Không dùng Stitch** (đã bỏ).
 
+## ⚠️ Mockup chỉ để tham khảo — không phải bản build chính
+
+Các file HTML trong `docs/mockups/` là **sketch / wireframe trực quan**, dùng khi brainstorm IA, layout và copy — **không** phải spec implementation cần làm y hệt 1:1.
+
+| Làm gì | Không làm gì |
+|--------|----------------|
+| Mở nhanh để hình dung flow, nav, nội dung màn | Copy HTML/CSS sang Nuxt và coi đó là source of truth |
+| Bám **ý tưởng** (4 mục shell, specialty track trên dashboard…) | Sửa đồng bộ 108 file mockup trước khi code |
+| Khi code từng màn: chỉnh mockup **song song** nếu cần | Block implement vì mockup lệch pixel hay CSS chưa đồng nhất |
+
+**Source of truth khi implement:** `docs/spec/screens/` + `DESIGN.md` + component thật trong app.  
+Mockup có thể **lệch layout/CSS giữa các file** — bình thường ở giai đoạn này; polish dần khi làm app thật.
+
 ## Cấu trúc thư mục
 
 ```
@@ -12,7 +25,7 @@ docs/mockups/
 ├── scripts/            ← sync-devices.mjs (desktop → tablet/mobile)
 ├── desktop/            ← ≥1024px, sidebar 240px
 ├── tablet/             ← ~768px, sidebar 200px
-└── mobile/             ← ~390px, bottom nav 5 item
+└── mobile/             ← ~390px, bottom nav 4 item
 ```
 
 **Đặt tên file:** `S{nn}-{slug}.html` (không suffix `-desktop` — thư mục đã chỉ rõ device).
@@ -100,7 +113,7 @@ node docs/mockups/scripts/sync-devices.mjs [tên-file.html ...]
 
 ## Khi code Nuxt
 
-Mockup = tham chiếu layout; implement theo `screens/` + `data-theme` CSS variables.
+Mockup = **tham khảo layout / copy**, không phải deliverable. Implement theo `screens/` + `data-theme` CSS variables; chỉ cập nhật mockup khi cần align lại ý đồ thiết kế.
 
 ## Phase sau (chưa mockup)
 

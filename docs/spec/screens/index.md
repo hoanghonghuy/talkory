@@ -26,4 +26,6 @@ Nav: Home, Learn, Review, Settings + floating AI (optional)
 
 > **Nguyên tắc IA:** Chỉ 4 mục vòng học chính trong shell. Track chuyên đề (IT, du lịch, business…) **không** là nav item — khám phá qua **S03 Dashboard** (catalog card), giống MongoDB University / Brottin hub.
 
+> **HTML mockup** (`docs/mockups/`): chỉ **tham khảo** trực quan — spec implement là các file `S*.md` ở đây + `DESIGN.md`. Xem [mockups.md](../references/mockups.md).
+
 > Pinia stores, composables — spec bổ sung sau khi implement.
