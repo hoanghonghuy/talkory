@@ -15,7 +15,8 @@
 | `StreakCard` | Streak, daily goal ring |
 | `ContinueLearningCard` | Bài dở JP / CN |
 | `SRSDueBadge` | Số thẻ cần ôn → link `/review` |
-| `ITTrackShortcut` | Card shortcut `/it` |
+| `ITTrackShortcut` | Card trong section **Lộ trình chuyên đề** → `/it` |
+| `SpecialtyTrackGrid` | Catalog các track theo chủ đề (IT, du lịch… phase sau) |
 | `AIQuotaChip` | "AI: 3/5 hôm nay" |
 | `UpgradeBanner` | Khi có level khóa |
 
@@ -32,7 +33,7 @@
 1. Hub chính sau đăng nhập
 2. Tap ngôn ngữ → S04
 3. Tap Ôn tập → S06
-4. Tap IT → S09
+4. Tap card **Lộ trình chuyên đề** trên dashboard → S09 (IT) hoặc track khác sau này
 
 ## Tương tác & Edge cases
 

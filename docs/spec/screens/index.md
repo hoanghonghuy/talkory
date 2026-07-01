@@ -22,6 +22,8 @@
 - **admin**: sidebar quản trị
 - **auth**: centered, không nav chính
 
-Nav: Home, Learn, Review, IT, Settings + floating AI (optional)
+Nav: Home, Learn, Review, Settings + floating AI (optional)
+
+> **Nguyên tắc IA:** Chỉ 4 mục vòng học chính trong shell. Track chuyên đề (IT, du lịch, business…) **không** là nav item — khám phá qua **S03 Dashboard** (catalog card), giống MongoDB University / Brottin hub.
 
 > Pinia stores, composables — spec bổ sung sau khi implement.

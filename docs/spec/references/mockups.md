@@ -83,11 +83,12 @@ Tablet/mobile: cùng tên file trong `tablet/` và `mobile/`.
 |---|---|---|
 | Desktop | Sidebar 240px + main max 1120px | Không sidebar |
 | Tablet | Sidebar 200px + main | Không sidebar |
-| Mobile | Bottom nav 5 item + `safe-area-inset` | Không bottom nav |
+| Mobile | Bottom nav **4 item** + `safe-area-inset` | Không bottom nav |
 
 - **Token:** CSS variables từ `DESIGN.md`
 - **Auth / modal:** centered, không shell
 - Link nội bộ: cùng thư mục device
+- **Nav shell:** 4 item — Trang chủ · Học · Ôn tập · Cài đặt. IT/specialty track chỉ qua S03 dashboard.
 
 ## Sync tablet/mobile
 

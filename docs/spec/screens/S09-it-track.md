@@ -27,8 +27,8 @@ Giống S04/S05 — tree + lesson player.
 ## Luồng người dùng
 
 1. Nav "IT" độc lập — **không** nằm trong `/learn/ja|zh`
-2. Chọn module → lesson → học như curriculum
-3. Complete → SRS deck `it_track`
+2. User vào từ **S03 → Lộ trình chuyên đề** (catalog card), breadcrumb: Trang chủ / Lộ trình chuyên đề / IT
+3. Chọn module → lesson → học như curriculum
 
 ## Tương tác & Edge cases
 

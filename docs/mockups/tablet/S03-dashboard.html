@@ -110,10 +110,11 @@
       box-shadow: inset 3px 0 0 var(--color-primary);
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
     }
+    .nav-settings { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: var(--radius-md); text-decoration: none; font-size: 14px; color: var(--color-slate); }
 
     .nav svg { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.85; }
 
-    .sidebar-footer {
+    .sidebar-footer { margin-top: auto;
       padding: 8px 8px 0;
       border-top: 1px solid var(--color-hairline);
       margin-top: 8px;
@@ -603,7 +604,7 @@
         </div>
       </div>
       <nav class="nav">
-        <a href="#" class="active">
+        <a href="S03-dashboard.html" class="active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
           Trang chủ
         </a>
@@ -611,26 +612,18 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           Học
         </a>
-        <a href="S06-srs.html">
+        <a href="S06-srs-front.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           Ôn tập
         </a>
-        <a href="S09-it-track.html">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          IT
-        </a>
-        <a href="S11-settings.html">
+      </nav>
+      <div class="sidebar-footer">
+        <a href="S11-settings.html" class="nav-settings">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
           Cài đặt
         </a>
-      </nav>
-      <div class="sidebar-footer">
-        <span style="display:flex;align-items:center;gap:12px;padding:10px 12px;font-size:14px;color:var(--color-slate);">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          Hồ sơ
-        </span>
       </div>
-    </aside>
+      </aside>
 
     <div class="main-wrap">
       <header class="topbar">
@@ -721,7 +714,9 @@
           </a>
         </div>
 
-        <div class="track-grid" style="grid-template-columns: 1fr; margin-bottom: 20px;">
+        <p class="section-title">Lộ trình chuyên đề</p>
+        <p style="font-size:13px;color:var(--color-slate);margin:-4px 0 14px;line-height:1.45">Các track theo chủ đề (IT, du lịch, business…) — học song song JLPT/HSK, mở từ trang chủ.</p>
+        <div class="track-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:12px; margin-bottom: 20px;">
           <a href="S09-it-track.html" class="track-card it" style="display:flex;align-items:center;gap:16px;padding:14px 20px;">
             <div style="flex:1">
               <div class="track-head" style="margin-bottom:4px">
@@ -731,6 +726,10 @@
             </div>
             <span style="font-size:13px;font-weight:600;color:var(--color-lang-it-accent)">Mở →</span>
           </a>
+          <div class="track-card" style="opacity:0.55;cursor:default;border-style:dashed;padding:14px 20px">
+            <div class="track-head" style="margin-bottom:4px"><h4><span class="dot" style="background:var(--color-muted)"></span> Du lịch</h4></div>
+            <p style="margin:0;font-size:13px;color:var(--color-muted)">Sắp có</p>
+          </div>
         </div>
 
         <div class="bottom-row">

@@ -76,7 +76,7 @@
 
 | Pattern | Mô tả | Talkory screen |
 |---|---|---|
-| 3 tab: Learn / Review / Me | Điều hướng rõ; desktop Talkory dùng **sidebar** thay bottom tab | Mobile **S03** ≈ 5-item bottom nav |
+| 3 tab: Learn / Review / Me | Điều hướng rõ; desktop Talkory: **4 item** — Trang chủ / Học / Ôn / Cài đặt (Me pin cuối sidebar) | Mobile bottom nav 4 item |
 | Lesson path tuyến tính | Unit → lesson, progress dot/check | **S04** tree + **S05** prev/next |
 | Grammar tips trước bài | Card giải thích ngắn trước exercise | **S05** block `text` + `grammar_callout` |
 | Mistake review | Tập trung câu sai cuối bài | **S05** footer “Xem lại N câu sai” |
@@ -209,11 +209,23 @@ Talkory **đã chốt** trong DESIGN.md: không Duolingo-style.
 
 | Desktop | Mobile |
 |---|---|
-| Sidebar 240px cố định | Bottom nav 5 item (DESIGN §4) |
+| Sidebar 240px — **4 nav** + Cài đặt pin footer | Bottom nav **4 item** (không IT) |
+| Specialty tracks (IT…) = **dashboard catalog** | IT card trên S03, không tab riêng |
 | Dashboard 2 cột widget | Stack vertical; streak on top |
 | S04 tree sidebar + content | Tree collapse → accordion level |
 | S05 max-width 680px centered | Full width padding 16px |
 | S06 giữ bottom rating bar | Giữ — không chuyển rating lên top (học Anki) |
+
+### Primary nav vs Discovery (IA)
+
+| Trong shell (4 item) | Ngoài shell — discovery |
+|---|---|
+| Trang chủ `/` | Lộ trình chuyên đề (IT, du lịch…) → card S03 |
+| Học `/learn` | Luyện viết `/writing` → lesson CTA hoặc card |
+| Ôn `/review` | AI tutor → topbar chip / FAB |
+| Cài đặt `/settings` | Premium → banner S03 / modal S10 |
+
+**Lý do:** LingoDeer/WaniKani giữ nav = **vòng học cốt lõi**. MongoDB University / Brottin đặt **course catalog trên home** — scale được khi thêm track mà không phình sidebar.
 
 ---
 

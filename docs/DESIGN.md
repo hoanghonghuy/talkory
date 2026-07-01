@@ -245,8 +245,21 @@ shadows:
 ### AppShell (default)
 
 - Sidebar desktop 240px — `surface` background
-- Bottom nav mobile — 5 items, icon + micro label
+- Bottom nav mobile — **4 items** (Trang chủ · Học · Ôn · Cài đặt), icon + micro label
 - Content max-width 1120px centered
+
+**Primary nav (shell only):**
+
+| # | Label | Route | Ghi chú |
+|---|---|---|---|
+| 1 | Trang chủ | `/` | Hub — streak, continue, track cards |
+| 2 | Học | `/learn/:lang` | JLPT / HSK curriculum |
+| 3 | Ôn tập | `/review` | SRS |
+| 4 | Cài đặt | `/settings` | Pin cuối sidebar desktop (như LingoDeer “Me”) |
+
+**Không đặt trong primary nav:** IT và mọi specialty track, Writing, AI tutor, Premium — vào dashboard card, lesson CTA, topbar chip, hoặc FAB.
+
+Tham khảo: LingoDeer (Learn / Review / Me), MongoDB University (course catalog trên home), WaniKani (dashboard widgets thay nav item).
 
 ### Lesson focus (`layout: lesson`)
 

@@ -3,106 +3,66 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Talkory — Cài đặt guest (S11)</title>
+  <title>Talkory — Cài đặt guest (S11 mobile)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --color-primary: #5645d4;
-      --color-on-primary: #fff;
-      --color-canvas: #fff;
-      --color-surface: #f6f5f4;
-      --color-hairline: #e5e3df;
-      --color-charcoal: #37352f;
-      --color-slate: #5d5b54;
-      --color-lang-ja: #e6e0f5;
-      --radius-md: 8px;
-      --radius-lg: 12px;
-      --sidebar-w: 240px;
+      --color-primary: #5645d4; --color-on-primary: #fff; --color-canvas: #fff;
+      --color-surface: #f6f5f4; --color-hairline: #e5e3df; --color-slate: #5d5b54;
+      --color-lang-ja: #e6e0f5; --radius-md: 8px; --radius-lg: 12px;
+      --safe-b: env(safe-area-inset-bottom, 0px); --nav-h: 64px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); color: var(--color-charcoal); min-height: 100vh; }
-    .shell { display: flex; min-height: 100vh; }
-    .sidebar { position: fixed; left: 0; top: 0; width: var(--sidebar-w); height: 100vh; background: var(--color-surface); border-right: 1px solid var(--color-hairline); padding: 24px 0; }
-    .sidebar { display: none; }
-    .nav a { display: block; padding: 10px 20px; font-size: 14px; color: var(--color-slate); text-decoration: none; }
-    .nav a.active { color: var(--color-primary); font-weight: 600; }
-    .main-wrap { margin-left: 0; flex: 1; display: flex; flex-direction: column; min-width: 0; }
-    h2 { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
-    .guest-banner {
-      background: var(--color-lang-ja); border-radius: var(--radius-lg);
-      padding: 20px; margin-bottom: 24px;
-    }
-    .guest-banner h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-    .guest-banner p { font-size: 14px; color: var(--color-slate); margin-bottom: 14px; line-height: 1.45; }
-    .btn-cta {
-      display: inline-block; font-family: inherit; font-size: 14px; font-weight: 600;
-      padding: 10px 18px; background: var(--color-primary); color: var(--color-on-primary);
-      border-radius: var(--radius-md); text-decoration: none; border: none; cursor: pointer;
-    }
-    .section { margin-bottom: 24px; }
-    .section h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-slate); margin-bottom: 12px; }
-    .row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 0; border-bottom: 1px solid var(--color-hairline);
-      font-size: 15px;
-    }
-    .row select {
-      font-family: inherit; font-size: 14px; padding: 6px 10px;
-      border: 1px solid var(--color-hairline); border-radius: var(--radius-md);
-      background: var(--color-canvas);
-    }
-    .mockup-badge { position: fixed; bottom: 16px; right: 16px; font-size: 11px; color: var(--color-slate); background: #fff; border: 1px solid var(--color-hairline); padding: 6px 12px; border-radius: 999px; }
-  
-    :root { --safe-b: env(safe-area-inset-bottom, 0px); --nav-h: 64px; }
-    body { padding-bottom: calc(var(--nav-h) + var(--safe-b) + 8px); }
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
-      background: var(--color-canvas); border-top: 1px solid var(--color-hairline);
-      padding: 6px 4px calc(6px + var(--safe-b));
-      display: grid; grid-template-columns: repeat(5, 1fr);
-    }
-    .bottom-nav a {
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      font-size: 10px; color: var(--color-slate); text-decoration: none; padding: 4px 0;
-    }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--color-surface); padding: 12px 16px calc(var(--nav-h) + var(--safe-b) + 12px); }
+    h1 { font-size: 22px; font-weight: 600; margin-bottom: 16px; }
+    .banner { background: var(--color-lang-ja); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
+    .banner h2 { font-size: 16px; margin-bottom: 6px; }
+    .banner p { font-size: 14px; color: var(--color-slate); line-height: 1.45; margin-bottom: 12px; }
+    .btn { display: inline-block; font: inherit; font-size: 14px; font-weight: 600; padding: 10px 16px; background: var(--color-primary); color: var(--color-on-primary); border-radius: var(--radius-md); text-decoration: none; }
+    .section { background: var(--color-canvas); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); padding: 16px; margin-bottom: 12px; }
+    .section h2 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #bbb8b1; margin-bottom: 12px; }
+    .row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--color-hairline); font-size: 15px; }
+    .row:last-child { border-bottom: none; }
+    .row select { font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid var(--color-hairline); border-radius: var(--radius-md); }
+    .note { font-size: 13px; color: var(--color-slate); }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; background: var(--color-canvas); border-top: 1px solid var(--color-hairline); padding: 6px 4px calc(6px + var(--safe-b)); display: grid; grid-template-columns: repeat(4, 1fr); }
+    .bottom-nav a { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 10px; color: var(--color-slate); text-decoration: none; }
     .bottom-nav a.active { color: var(--color-primary); font-weight: 600; }
     .bottom-nav svg { width: 22px; height: 22px; }
+    .mock { position: fixed; bottom: calc(var(--nav-h) + 6px); right: 6px; font-size: 9px; padding: 3px 6px; background: #fff; border: 1px solid var(--color-hairline); border-radius: 999px; }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <aside class="sidebar">
-      <nav class="nav"><a href="S11-settings-guest.html" class="active">Cài đặt</a></nav>
-    </aside>
-    <div class="main-wrap">
-      <h2>Cài đặt</h2>
-      <div class="guest-banner">
-        <h3>Bạn đang dùng chế độ khách</h3>
-        <p>Tiến độ lưu trên thiết bị này. Đăng ký để đồng bộ streak, SRS và học trên nhiều máy.</p>
-        <a href="S01-auth-register.html" class="btn-cta">Đăng ký miễn phí</a>
-      </div>
-      <div class="section">
-        <h3>Hiển thị</h3>
-        <div class="row">
-          <span>Ngôn ngữ giao diện</span>
-          <select><option>Tiếng Việt</option><option>English</option></select>
-        </div>
-        <div class="row">
-          <span>Chủ đề</span>
-          <select><option>Talkory Classic</option></select>
-        </div>
-      </div>
-      <p style="font-size:13px;color:var(--color-slate)">Tài khoản, thông báo và Premium chỉ có sau khi đăng ký.</p>
-    </div>
+  <h1>Cài đặt</h1>
+  <div class="banner">
+    <h2>Chế độ khách</h2>
+    <p>Đăng ký để đồng bộ streak, SRS và học trên nhiều thiết bị.</p>
+    <a href="S01-auth-register.html" class="btn">Đăng ký miễn phí</a>
   </div>
-  <div class="mockup-badge">S11 · guest settings · Mobile</div>
-
-    <nav class="bottom-nav" aria-label="Điều hướng">
-      <a href="S03-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>Trang chủ</a>
-      <a href="S04-curriculum.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Học</a>
-      <a href="S06-srs.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Ôn</a>
-      <a href="S09-it-track.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>IT</a>
-      <a href="S11-settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>Cài đặt</a>
-    </nav>
+  <section class="section">
+    <h2>Hiển thị</h2>
+    <div class="row"><span>Ngôn ngữ</span><select><option>Tiếng Việt</option></select></div>
+    <div class="row"><span>Chủ đề</span><select><option>Classic</option></select></div>
+  </section>
+  <p class="note">Tài khoản &amp; Premium có sau khi đăng ký.</p>
+        <nav class="bottom-nav" aria-label="Điều hướng chính">
+    <a href="S03-dashboard.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+      Trang chủ
+    </a>
+    <a href="S04-curriculum.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Học
+    </a>
+    <a href="S06-srs-front.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Ôn
+    </a>
+    <a href="S11-settings-guest.html" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      Cài đặt
+    </a>
+  </nav>
+  <div class="mock">S11 guest · mobile</div>
 </body>
 </html>
